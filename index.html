@@ -21475,6 +21475,160 @@ captureRiskReturnBase();
 
 
 
+/* =====================================================
+   STANDALONE LIFE CYCLE INITIALIZATION
+   GitHub → Five Neptoon Science Portfolios
+===================================================== */
+
+async function initializeStandaloneLifeCycle(){
+
+  const PORTFOLIO_URL =
+    "https://neptooninvest.github.io/neptoon-data/portfolios_v1.json";
+
+  const MODEL_NUMBERS = [3, 4, 5, 6, 7];
+
+  try {
+
+    const lang =
+      navigator.language.toLowerCase().startsWith("da")
+        ? "da"
+        : "en";
+
+    const response =
+      await fetch(PORTFOLIO_URL);
+
+    if(!response.ok){
+      throw new Error(
+        "Portfolio API HTTP " + response.status
+      );
+    }
+
+    const data =
+      await response.json();
+
+    const portfolioMap =
+      new Map(
+        (data.portfolios || []).map(
+          p => [Number(p.modelNo), p]
+        )
+      );
+
+    const riskAnchors =
+      MODEL_NUMBERS.map((modelNo, index) => {
+
+        const model =
+          portfolioMap.get(modelNo);
+
+        if(!model){
+          throw new Error(
+            "Missing Science portfolio " + modelNo
+          );
+        }
+
+        const k =
+          model.objKeyFigures || {};
+
+        return {
+
+          riskID:index + 1,
+
+          identity:{
+
+            modelNo:model.modelNo,
+
+            modelLabel:model.modelLabel,
+
+            modelName:model.modelLabel,
+
+            ccy:lang === "da" ? "DKK" : "EUR",
+
+            modelType:"Generic Model",
+
+            country:"Global"
+
+          },
+
+          metrics:{
+
+            expRetNet:k.expRetNet,
+
+            expRetGross:k.expRetGross,
+
+            equityWeight:k.equityWeight,
+
+            bondsWeight:k.bondsWeight,
+
+            alternativesWeight:k.alternativesWeight,
+
+            risk:k.risk,
+
+            sharpeNet:k.sharpeRatioNet,
+
+            costs:k.costs
+
+          },
+
+          holdings:model.arrayHoldings || [],
+
+          arrayHistory:model.arrayHistory || []
+
+        };
+
+      });
+
+    /*
+      Send the same INIT message previously
+      supplied by the Wix parent page.
+    */
+
+    window.postMessage({
+
+      type:"INIT",
+
+      payload:{
+
+        lang,
+
+        riskAnchors
+
+      }
+
+    }, window.location.origin);
+
+    console.log(
+      "STANDALONE LIFE CYCLE INITIALIZED",
+      riskAnchors
+    );
+
+  } catch(err){
+
+    console.error(
+      "STANDALONE LIFE CYCLE INIT ERROR",
+      err
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   START STANDALONE APPLICATION
+===================================================== */
+
+if(document.readyState === "loading"){
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializeStandaloneLifeCycle
+  );
+
+} else {
+
+  initializeStandaloneLifeCycle();
+
+}
+
 
 
 
