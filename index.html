@@ -21400,8 +21400,9 @@ function paintFutureResourceRates(){
     
 
 window.addEventListener("message", event => {
-
+console.log("WINDOW 1");
   const msg = event?.data || {};
+console.log("WINDOW 2");
 
   if(msg.type !== "INIT"){
     return;
@@ -21414,8 +21415,10 @@ window.addEventListener("message", event => {
   */
 
   INIT.lang = payload.lang || "en";
+console.log("WINDOW 3");
 
   applyLang(INIT.lang);
+console.log("WINDOW 4");
 
 
   /*
@@ -21633,14 +21636,14 @@ async function initializeStandaloneLifeCycle(){
 ===================================================== */
 
 if(document.readyState === "loading"){
-
+console.log("LIFE CYCLE DALTON 1");
   document.addEventListener(
     "DOMContentLoaded",
     initializeStandaloneLifeCycle
   );
 
 } else {
-
+console.log("LIFE CYCLE DALTON 2");
   initializeStandaloneLifeCycle();
 
 }
