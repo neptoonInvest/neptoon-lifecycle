@@ -21429,7 +21429,20 @@ window.addEventListener("message", event => {
     );
 
   }
+console.log(
+  "GITHUB ANCHORS RECEIVED",
+  payload.riskAnchors.map(a => ({
+    riskID:a.riskID,
+    modelNo:a.identity?.modelNo,
+    modelLabel:a.identity?.modelLabel,
+    holdings:a.holdings
+  }))
+);
 
+console.log(
+  "RISK ANCHORS AFTER SET",
+  RISK_ANCHORS
+);
 
   /*
     3. PAINT RISK SELECTORS
@@ -21470,7 +21483,10 @@ captureRiskReturnBase();
   */
 
   render();
-
+console.log(
+  "RISK ANCHORS AFTER RENDER",
+  RISK_ANCHORS
+);
 });
 
 
