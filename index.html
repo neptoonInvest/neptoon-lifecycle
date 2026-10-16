@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Neptoon Life Cycle</title><style>
 /* ORIGINAL NEPTOON LIFE CYCLE CSS — PRESERVED */
 
@@ -3857,6 +3858,23 @@ body{padding:12px 12px 30px}
 .app-config-panel{padding:22px;border:1px solid var(--np-border);background:white;margin-bottom:18px}.app-config-panel h2{margin:5px 0 10px}.app-config-panel p{color:var(--np-muted);line-height:1.5}.app-config-panel label{display:block;font:700 12px Arial,sans-serif;margin:15px 0 6px}.app-config-panel select{padding:10px;min-width:230px;max-width:100%;border:1px solid var(--np-border);background:white}.app-note{margin-top:10px;font:12px/1.5 Arial,sans-serif;color:var(--np-muted)}.anchor-config{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:18px}.anchor-config>div{background:var(--np-bg);padding:14px 10px;text-align:center;font:12px Arial,sans-serif}.anchor-config span{display:block;font-weight:700;margin-top:6px}
 .model-footer{position:sticky;bottom:0;z-index:40;background:#fff;border:1px solid var(--np-border);box-shadow:0 -3px 14px rgba(20,36,58,.06);margin-top:25px}.model-footer>button{display:flex;justify-content:space-between;align-items:center;width:100%;background:var(--np-bg);border:0;border-bottom:1px solid var(--np-border);padding:9px 15px;cursor:pointer}.footer-title{font:700 11px Arial,sans-serif;letter-spacing:.1em}.model-footer-body{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:14px 16px}.model-footer-body>div{display:flex;flex-direction:column;gap:6px}.model-footer-body small{font:11px Arial,sans-serif;color:var(--np-muted)}.model-footer-body strong{font:700 15px Arial,sans-serif}.app-legal{display:flex;justify-content:space-between;gap:20px;padding:24px 4px;color:var(--np-muted);font:11px/1.6 Arial,sans-serif}
 @media(max-width:720px){.app-header{align-items:flex-start}.app-name{font-size:23px}.app-nav button{padding:12px 9px;font-size:11px}.mode-header{flex-direction:column;align-items:stretch}.mode-switch button{flex:1}#scenarioInputsPanel .scenarioGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.anchor-config{grid-template-columns:repeat(2,minmax(0,1fr))}.model-footer-body{grid-template-columns:repeat(2,minmax(0,1fr))}.app-legal{flex-direction:column}}
+
+/* LIFE CYCLE TAB — four lifestyle inputs and dual-purpose slider */
+#tabLifeCycle #scenarioInputsPanel .scenarioGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:16px}
+#tabLifeCycle .lifeCoreField{padding:13px 12px 12px;border:1px solid #d8dee8;background:#fff;min-width:0;transition:border-color .15s,background .15s}
+#tabLifeCycle .lifeCoreField label{min-height:30px;margin-bottom:7px;font-size:11px;color:#475569}
+#tabLifeCycle .lifeCoreField input{width:100%;font-family:"Times New Roman",serif;font-size:20px;height:42px}
+#tabLifeCycle[data-perspective="fire"] .lifeCoreFire,#tabLifeCycle[data-perspective="legacy"] .lifeCoreLegacy{border:2px solid #4E79BD;background:#eef4fb;padding:12px 11px 11px}
+#tabLifeCycle[data-perspective="fire"] .lifeCoreFire label,#tabLifeCycle[data-perspective="legacy"] .lifeCoreLegacy label{color:#4E79BD;font-weight:700}
+#tabLifeCycle .lifecyclePanel{margin-bottom:0;border-bottom:0;padding-bottom:14px}
+#tabLifeCycle .chartSection{margin-top:0}
+#tabLifeCycle .chartSection .fireControlBar{margin-bottom:0}
+#tabLifeCycle .metricsMountain{margin-bottom:18px}
+#tabLifeCycle .riskArea{margin-top:0}
+#tabLifeCycle .fireControlBar[hidden]{display:none!important}
+#tabLifeCycle .lifeCoreField input:focus{box-shadow:0 0 0 1px #4E79BD}
+@media(max-width:850px){#tabLifeCycle #scenarioInputsPanel .scenarioGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){#tabLifeCycle #scenarioInputsPanel .scenarioGrid{grid-template-columns:1fr}}
 </style></head><body><div class="neptoon-app" id="neptoonApp"><header class="app-header"><div class="app-brand"><div class="app-kicker">NEPTOON INVEST</div><div class="app-name">Life Cycle</div></div><div class="app-header-actions"><div class="lang-switch"><button data-ui-lang="da" type="button">DA</button><button data-ui-lang="en" type="button">EN</button></div><span class="app-account-label" id="appAccountStatus">Visitor</span></div></header><nav aria-label="Main navigation" class="app-nav" id="appNavigation"><button data-go-tab="Welcome" data-lang="navWelcome" type="button">Welcome</button><button data-go-tab="LifeCycle" data-lang="navLifeCycle" type="button">Life Cycle</button><button data-go-tab="BalanceSheet" data-lang="navBalanceSheet" type="button">Balance Sheet</button><button data-go-tab="History" data-lang="navHistory" type="button">Portfolio History</button><button data-go-tab="Account" data-lang="navAccount" type="button">My Account</button></nav><main id="appContent"><section class="app-tab" data-tab="Welcome" id="tabWelcome"><section class="hero">
 <div class="heroKicker" data-lang="heroKicker">
     NEPTOONWEALTH · LIFE CYCLE
@@ -4166,66 +4184,36 @@ body{padding:12px 12px 30px}
         LIFE_CYCLE_FAQ[lang]
     -->
 </div>
-</section></section><section class="app-tab" data-tab="LifeCycle" id="tabLifeCycle"><div class="mode-header"><div><div class="app-kicker" data-lang="lifeCyclePerspective">YOUR LIFE CYCLE PERSPECTIVE</div><h2 id="modeTitle">Financial Freedom</h2><p id="modeDescription">Explore when your desired lifestyle becomes sustainable.</p></div><div aria-label="Life Cycle perspective" class="mode-switch" role="group"><button aria-pressed="true" data-mode="fire" type="button">FIRE</button><button aria-pressed="false" data-mode="legacy" type="button">LEGACY</button></div></div><section class="panel" id="scenarioInputsPanel">
-<div class="panelHead">
-<!-- LEFT -->
-<div>
-<div class="resultKicker" data-lang="lifeCycleKickerInputs">
-         YOUR LIFE CYCLE INPUT
-      </div>
-<div class="sectionTitle" data-lang="lifeTitle">
-        Your life
-      </div>
-<div class="sectionHint" data-lang="lifeHint">
-        Start with the core household scenario.
-      </div>
-</div>
-<!-- RIGHT · FIRE TARGET -->
-<div class="scenarioField fireTargetCell">
-<label data-lang="monthlyConsumption">
-        Monthly consumption when financially free
-      </label>
-<input class="money" id="monthlyConsumption" value="28.000"/>
-</div>
-</div>
+</section></section><section class="app-tab" data-tab="LifeCycle" id="tabLifeCycle"><div class="mode-header"><div><div class="app-kicker" data-lang="lifeCyclePerspective">YOUR LIFE CYCLE PERSPECTIVE</div><h2 id="modeTitle">Financial Freedom</h2><p id="modeDescription">Explore when your desired lifestyle becomes sustainable.</p></div><div aria-label="Life Cycle perspective" class="mode-switch" role="group"><button aria-pressed="true" data-mode="fire" type="button">FIRE</button><button aria-pressed="false" data-mode="legacy" type="button">LEGACY</button></div></div><section class="panel" id="scenarioInputsPanel"><div class="panelHead"><div><div class="resultKicker">FOUR LIFESTYLE DECISIONS</div><div class="sectionTitle">Your financial choices</div></div></div>
+
 <div class="scenarioGrid">
-<div class="scenarioField">
-<label data-lang="currentAge">
-        Current age
-      </label>
-<input id="currentAge" max="100" min="18" type="number" value="50"/>
-</div>
-<div class="scenarioField">
-<label data-lang="expectedLifetime">
-        Expected lifetime
-      </label>
-<input id="deathAge" max="120" min="40" type="number" value="90"/>
-</div>
-<div class="scenarioField">
+
+
+
+
+
+
+<div class="scenarioField lifeCoreField">
 <label data-lang="wealthToday">
     Wealth today
   </label>
 <input class="money" id="wealthToday" inputmode="numeric" min="0" type="text" value="500.000"/>
-</div>
-<div class="scenarioField">
+</div><div class="scenarioField lifeCoreField">
 <label data-lang="monthlySavings">
     Monthly savings
   </label>
 <input class="money" id="monthlySavings" inputmode="numeric" min="0" type="text" value="10.000"/>
-</div>
-<div class="scenarioField">
-<label data-lang="savingsGrowthAnnual">
-        Annual savings growth (%)
+</div><div class="scenarioField lifeCoreField lifeCoreFire">
+<label data-lang="monthlyConsumption">
+        Monthly consumption when financially free
       </label>
-<input id="savingsGrowthAnnual" max="6" min="0" type="number" value="3"/>
-</div>
-<div class="scenarioField">
+<input class="money" id="monthlyConsumption" value="28.000"/>
+</div><div class="scenarioField lifeCoreField lifeCoreLegacy">
 <label data-lang="desiredLegacy">
     Desired legacy
   </label>
 <input class="money" id="legacy" inputmode="numeric" min="0" type="text" value="1.000.000"/>
-</div>
-</div>
+</div></div>
 </section><section class="lifecyclePanel">
 <div class="resultTop">
 <!-- LEFT: SECTION HEADING -->
@@ -4278,7 +4266,96 @@ body{padding:12px 12px 30px}
 </div>
 </div>
 </div>
-</section><div class="riskArea">
+</section><div class="chartSection">
+<div class="fireControlBar">
+<div class="fireControlCopy">
+<div class="fireControlTitle" data-lang="fireConsumptionTest">
+          FIRE CONSUMPTION TEST
+        </div>
+<div class="fireControlSub" data-lang="fireConsumptionTestSub">
+          Test a higher real monthly consumption target without changing your base input.
+        </div>
+</div>
+<div class="fireSliderBox">
+<div class="fireSliderMeta">
+<span id="fireSliderMin">
+            —
+          </span>
+<strong id="fireSliderValue">
+            —
+          </strong>
+<span id="fireSliderMax">
+            —
+          </span>
+</div>
+<input class="fireSlider" id="fireConsumptionSlider" max="100" min="0" step="1" type="range" value="0"/>
+</div>
+</div><div class="fireControlBar legacyControlBar" hidden="" id="legacyControlBar"><div class="fireControlCopy"><div class="fireControlTitle" data-lang="desiredLegacy">DESIRED LEGACY</div><div class="fireControlSub">Adjust the inheritance target while keeping the same financial model.</div></div><div class="fireSliderBox"><div class="fireSliderMeta"><span id="legacySliderMin">0</span><strong id="legacySliderValue">—</strong><span id="legacySliderMax">—</span></div><input class="fireSlider" id="legacySlider" max="5000000" min="0" step="25000" type="range" value="1000000"/></div></div>
+<div class="chartWrap">
+<canvas id="lifeChart"></canvas>
+<div class="chartMessage" id="chartMessage">
+</div>
+</div>
+<!-- MODEL EXPORT -->
+<div class="chartExportBar">
+<div class="chartExportText">
+<strong data-lang="verifyModel">
+          Verify the model
+        </strong>
+<span data-lang="verifyModelSub">
+          Download assumptions and the complete monthly Life Cycle calculation.
+        </span>
+</div>
+<button class="chartExportBtn" data-lang="downloadExcel" id="btnExportExcel" type="button">
+        Download Excel 
+      </button>
+</div>
+</div><div class="metricsMountain">
+<div class="metric">
+<div class="metricLabel" data-lang="wealthToday">
+        Wealth today
+      </div>
+<div class="metricValue" id="metricToday">
+        —
+      </div>
+<div class="metricSub" data-lang="economicHouseholdResources">
+        economic household resources
+      </div>
+</div>
+<div class="metric">
+<div class="metricLabel" data-lang="wealthAtFreedom">
+        Wealth at freedom
+      </div>
+<div class="metricValue" id="metricFreedom">
+        —
+      </div>
+<div class="metricSub" data-lang="expectedRealValue">
+        expected real value
+      </div>
+</div>
+<div class="metric">
+<div class="metricLabel" data-lang="monthlyConsumption">
+        Monthly consumption
+      </div>
+<div class="metricValue" id="metricConsumption">
+        —
+      </div>
+<div class="metricSub" data-lang="todaysPurchasingPower">
+        today's purchasing power
+      </div>
+</div>
+<div class="metric">
+<div class="metricLabel" data-lang="legacy">
+        Legacy
+      </div>
+<div class="metricValue" id="metricLegacy">
+        —
+      </div>
+<div class="metricSub" data-lang="afterFinalConsumption">
+        after final consumption
+      </div>
+</div>
+</div><div class="riskArea">
 <!-- =============================================
        PHASE 1 — BUILDING WEALTH
   ============================================== -->
@@ -4448,95 +4525,6 @@ body{padding:12px 12px 30px}
 <div class="riskAssumptionsNote" data-lang="realReturnExplanation">
     Real returns after costs, tax and inflation
   </div>
-</div>
-</div><div class="chartSection">
-<div class="fireControlBar">
-<div class="fireControlCopy">
-<div class="fireControlTitle" data-lang="fireConsumptionTest">
-          FIRE CONSUMPTION TEST
-        </div>
-<div class="fireControlSub" data-lang="fireConsumptionTestSub">
-          Test a higher real monthly consumption target without changing your base input.
-        </div>
-</div>
-<div class="fireSliderBox">
-<div class="fireSliderMeta">
-<span id="fireSliderMin">
-            —
-          </span>
-<strong id="fireSliderValue">
-            —
-          </strong>
-<span id="fireSliderMax">
-            —
-          </span>
-</div>
-<input class="fireSlider" id="fireConsumptionSlider" max="100" min="0" step="1" type="range" value="0"/>
-</div>
-</div>
-<div class="chartWrap">
-<canvas id="lifeChart"></canvas>
-<div class="chartMessage" id="chartMessage">
-</div>
-</div>
-<!-- MODEL EXPORT -->
-<div class="chartExportBar">
-<div class="chartExportText">
-<strong data-lang="verifyModel">
-          Verify the model
-        </strong>
-<span data-lang="verifyModelSub">
-          Download assumptions and the complete monthly Life Cycle calculation.
-        </span>
-</div>
-<button class="chartExportBtn" data-lang="downloadExcel" id="btnExportExcel" type="button">
-        Download Excel 
-      </button>
-</div>
-</div><div class="metricsMountain">
-<div class="metric">
-<div class="metricLabel" data-lang="wealthToday">
-        Wealth today
-      </div>
-<div class="metricValue" id="metricToday">
-        —
-      </div>
-<div class="metricSub" data-lang="economicHouseholdResources">
-        economic household resources
-      </div>
-</div>
-<div class="metric">
-<div class="metricLabel" data-lang="wealthAtFreedom">
-        Wealth at freedom
-      </div>
-<div class="metricValue" id="metricFreedom">
-        —
-      </div>
-<div class="metricSub" data-lang="expectedRealValue">
-        expected real value
-      </div>
-</div>
-<div class="metric">
-<div class="metricLabel" data-lang="monthlyConsumption">
-        Monthly consumption
-      </div>
-<div class="metricValue" id="metricConsumption">
-        —
-      </div>
-<div class="metricSub" data-lang="todaysPurchasingPower">
-        today's purchasing power
-      </div>
-</div>
-<div class="metric">
-<div class="metricLabel" data-lang="legacy">
-        Legacy
-      </div>
-<div class="metricValue" id="metricLegacy">
-        —
-      </div>
-<div class="metricSub" data-lang="afterFinalConsumption">
-        after final consumption
-      </div>
 </div>
 </div><div class="modelNote" data-lang="lifeCycleModelNote">
 
@@ -5471,7 +5459,22 @@ body{padding:12px 12px 30px}
 </section>
 </div>
 </section>
-</div></section><section class="app-tab" data-tab="Account" id="tabAccount"><section class="panel">
+</div></section><section class="app-tab" data-tab="Account" id="tabAccount"><section class="panel" id="lifeStructuralAssumptions"><div class="sectionTitle">Life Cycle · Structural assumptions</div><div class="sectionHint">Age, planning horizon and savings growth. These assumptions remain active in the Life Cycle calculation.</div><div class="scenarioGrid" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="scenarioField">
+<label data-lang="currentAge">
+        Current age
+      </label>
+<input id="currentAge" max="100" min="18" type="number" value="50"/>
+</div><div class="scenarioField">
+<label data-lang="expectedLifetime">
+        Expected lifetime
+      </label>
+<input id="deathAge" max="120" min="40" type="number" value="90"/>
+</div><div class="scenarioField">
+<label data-lang="savingsGrowthAnnual">
+        Annual savings growth (%)
+      </label>
+<input id="savingsGrowthAnnual" max="6" min="0" type="number" value="3"/>
+</div></div></section><section class="panel">
 <div class="panelHead">
 <div>
 <div class="sectionTitle" data-lang="assumptionsTitle">
@@ -5703,5 +5706,43 @@ body{padding:12px 12px 30px}
    optimizationFailed(){document.getElementById('globalOptimizationStatus').textContent='Calculation failed';}
  };
  openTab('LifeCycle');setLanguage(detectLang(),false);setPerspective('fire');
+})();
+</script><script>
+(function(){
+ const root=document.getElementById('tabLifeCycle');
+ const legacyInput=document.getElementById('legacy');
+ const slider=document.getElementById('legacySlider');
+ const legacyBar=document.getElementById('legacyControlBar');
+ const fireBar=root.querySelector('.fireControlBar:not(.legacyControlBar)');
+ const modeButtons=root.querySelectorAll('[data-mode]');
+ function numberFromInput(value){const cleaned=String(value||'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');return Math.max(0,Number(cleaned)||0);}
+ function locale(){return document.documentElement.lang==='da'?'da-DK':'en-GB';}
+ function paintLegacySlider(){
+  const v=numberFromInput(legacyInput.value);
+  const upper=Math.max(5000000,Math.ceil(v*1.5/250000)*250000);
+  slider.max=String(upper);slider.value=String(Math.min(v,upper));
+  document.getElementById('legacySliderValue').textContent=v.toLocaleString(locale());
+  document.getElementById('legacySliderMax').textContent=upper.toLocaleString(locale());
+ }
+ function syncPerspective(){
+  const isLegacy=root.dataset.perspective==='legacy';
+  fireBar.hidden=isLegacy;legacyBar.hidden=!isLegacy;
+  paintLegacySlider();
+ }
+ slider.addEventListener('input',()=>{
+  legacyInput.value=Math.round(Number(slider.value)).toLocaleString('da-DK');
+  paintLegacySlider();
+  // Reuse the financial engine's existing input-change listener when installed.
+  legacyInput.dispatchEvent(new Event('input',{bubbles:true}));
+ });
+ slider.addEventListener('change',()=>legacyInput.dispatchEvent(new Event('change',{bubbles:true})));
+ legacyInput.addEventListener('input',paintLegacySlider);
+ modeButtons.forEach(button=>button.addEventListener('click',syncPerspective));
+ // Also support programmatic perspective changes from the existing app shell.
+ const shell=window.NeptoonAppShell;
+ if(shell){const old=shell.setPerspective;shell.setPerspective=function(mode){old(mode);syncPerspective();};}
+ const observer=new MutationObserver(syncPerspective);
+ observer.observe(root,{attributes:true,attributeFilter:['data-perspective']});
+ syncPerspective();
 })();
 </script></body></html>
