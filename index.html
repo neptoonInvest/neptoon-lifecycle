@@ -1,5 +1,3849 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Neptoon Life Cycle</title><style>
+/* ORIGINAL NEPTOON LIFE CYCLE CSS — PRESERVED */
+
+:root{
+  --blue:#4E79BD;
+  --ink:#0f1b2c;
+  --muted:#667085;
+  --line:#d8dee8;
+  --soft:#f5f7fa;
+  --softBlue:#eef4fb;
+  --red:#d64242;
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:#f3f5f8;
+  color:var(--ink);
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  padding:26px 18px 44px;
+}
+
+.page{
+  width:min(1240px,100%);
+  margin:0 auto;
+}
+
+.hero,
+.panel,
+.lifecyclePanel{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:0;
+}
+
+.hero{
+  padding:30px 34px 28px;
+  margin-bottom:16px;
+}
+
+.heroKicker,
+.sectionNo,
+.resultKicker,
+.riskTitle,
+.fireControlTitle{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.13em;
+  color:var(--blue);
+}
+
+.heroTitle{
+  margin:7px 0 8px;
+  font-family:"Times New Roman",serif;
+  font-size:34px;
+  line-height:1.05;
+  font-weight:400;
+}
+
+.heroSub{
+  max-width:760px;
+  font-family:"Times New Roman",serif;
+  font-size:17px;
+  line-height:1.45;
+  color:#475569;
+}
+
+.panel{
+  padding:22px 24px;
+  margin-bottom:16px;
+}
+
+.panelHead,
+.resultTop{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:flex-start;
+}
+
+.sectionTitle,
+.resultTitle{
+  margin-top:4px;
+  font-family:"Times New Roman",serif;
+  font-size:23px;
+}
+
+.sectionHint{
+  margin-top:4px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.scenarioGrid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:12px;
+  margin-top:18px;
+}
+
+.scenarioField label,
+.miniField label,
+.assumptionField label{
+  display:block;
+  min-height:28px;
+  margin-bottom:5px;
+  font-size:11px;
+  line-height:1.25;
+  color:#475569;
+}
+
+input{
+  width:100%;
+  height:34px;
+  border:1px solid #cfd6df;
+  border-radius:0;
+  background:#fff;
+  color:var(--ink);
+  padding:6px 8px;
+  outline:none;
+}
+
+input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 1px var(--blue);
+}
+
+.componentPicker{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+
+.componentBtn,
+.assumptionToggle,
+.chartExportBtn{
+  border:1px solid #c8d0da;
+  border-radius:0;
+  background:#fff;
+  color:#334155;
+  padding:8px 11px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.componentBtn.active{
+  border-color:var(--blue);
+  color:var(--blue);
+  background:var(--softBlue);
+}
+
+.optionalComponents{
+  margin-top:12px;
+}
+
+.optionalComponent{
+  border-top:1px solid #e4e8ee;
+  padding:13px 0 2px;
+}
+
+.mortgageOverlay{
+  margin:14px 0 4px;
+  padding:14px;
+  border:1px solid #dbe1e9;
+  background:#fafbfd;
+}
+.mortgageHead{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:12px}
+.mortgageTitle{font-family:"Times New Roman",serif;font-size:16px}
+.mortgageHint{margin-top:2px;font-size:10px;color:var(--muted)}
+.mortgageToggle{display:flex;align-items:center;gap:7px;font-size:11px;color:#475569}
+.mortgageToggle input{width:auto;height:auto}
+.mortgageGrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.mortgageField label{display:block;min-height:28px;margin-bottom:5px;font-size:10px;line-height:1.25;color:#475569}
+.mortgageField select{width:100%;height:34px;border:1px solid #cfd6df;border-radius:0;background:#fff;color:var(--ink);padding:6px 8px;outline:none}
+.mortgageStatus{margin-top:9px;font-size:10px;color:#667085}
+
+.componentRow,
+.componentRow.future,
+.componentRow.pension{
+  display:grid;
+  grid-template-columns:minmax(260px,1fr) 150px 150px 150px;
+  gap:12px;
+  align-items:end;
+}
+
+.componentIdentity{
+  grid-column:auto;
+  align-self:center;
+}
+
+.componentName{
+  font-family:"Times New Roman",serif;
+  font-size:17px;
+}
+
+.componentDescription{
+  margin-top:2px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.lifecyclePanel{
+  padding:24px;
+  margin-bottom:16px;
+}
+
+.freedomBox{
+  text-align:right;
+  min-width:270px;
+}
+
+.freedomLabel{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.freedomAge{
+  margin-top:2px;
+  font-family:"Times New Roman",serif;
+  font-size:38px;
+  line-height:1;
+  color:var(--blue);
+}
+
+.freedomRange{
+  margin-top:5px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.riskArea{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:22px;
+  padding:14px 0;
+  border-top:1px solid #e3e7ed;
+  border-bottom:1px solid #e3e7ed;
+}
+
+.riskBlock{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+}
+
+.riskReturn{
+  margin-top:3px;
+  font-family:"Times New Roman",serif;
+  font-size:13px;
+  color:#475569;
+}
+
+.riskSelector{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.riskWord{
+  font-size:10px;
+  color:#7b8798;
+}
+
+.riskDots{
+  display:flex;
+  gap:5px;
+}
+
+.riskDot{
+  width:12px;
+  height:12px;
+  padding:0;
+  border:1px solid #aab4c2;
+  border-radius:50%;
+  background:#fff;
+  cursor:pointer;
+}
+
+.riskDot.active{
+  background:var(--red);
+  border-color:var(--red);
+}
+
+
+.chartSection{
+  margin-top:14px;
+}
+
+.fireControlBar{
+  display:grid;
+  grid-template-columns:minmax(260px,.8fr) minmax(420px,1.2fr);
+  gap:26px;
+  align-items:center;
+  padding:12px 14px;
+  border:1px solid #dbe1e9;
+  background:#fafbfd;
+}
+
+.fireControlSub{
+  margin-top:3px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.fireSliderBox{
+  min-width:0;
+}
+
+.fireSliderMeta{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+  font-size:10px;
+  color:#7b8798;
+}
+
+.fireSliderMeta strong{
+  font-family:"Times New Roman",serif;
+  font-size:18px;
+  font-weight:400;
+  color:var(--blue);
+}
+
+.fireSliderMeta span:last-child{
+  text-align:right;
+}
+
+.fireSlider{
+  width:100%;
+  height:18px;
+  padding:0;
+  border:0;
+  box-shadow:none;
+  accent-color:var(--blue);
+}
+
+.chartWrap{
+  position:relative;
+  height:530px;
+  margin-top:10px;
+  border:1px solid #dbe1e9;
+  background:#fff;
+}
+
+#lifeChart{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.chartMessage{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px;
+  text-align:center;
+  pointer-events:none;
+  font-family:"Times New Roman",serif;
+  font-size:18px;
+  color:#64748b;
+}
+
+.chartExportBar{
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:center;
+  padding:12px 14px;
+  border:1px solid #dbe1e9;
+  border-top:0;
+}
+
+.chartExportText{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  font-size:11px;
+  color:var(--muted);
+}
+
+.chartExportText strong{
+  color:#334155;
+}
+
+.chartExportBtn{
+  border-color:var(--red);
+  color:var(--red);
+}
+
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid #dbe1e9;
+  border-top:0;
+}
+
+.metric{
+  padding:14px;
+  border-right:1px solid #e2e7ed;
+}
+
+.metric:last-child{
+  border-right:0;
+}
+
+.metricLabel{
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:#7b8798;
+}
+
+.metricValue{
+  margin-top:4px;
+  font-family:"Times New Roman",serif;
+  font-size:24px;
+  color:var(--ink);
+}
+
+.metricSub{
+  margin-top:2px;
+  font-size:10px;
+  color:#94a0ae;
+}
+
+.modelNote{
+  margin-top:10px;
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  line-height:1.4;
+  color:#667085;
+}
+
+.assumptionToggle{
+  min-width:125px;
+}
+
+.assumptionGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+
+.taxField{
+  grid-column:span 2;
+}
+
+.taxOptions{
+  display:flex;
+  min-height:34px;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.taxOption{
+  min-height:0 !important;
+  display:flex !important;
+  align-items:center;
+  gap:3px;
+  margin:0 !important;
+}
+
+.taxOption input{
+  width:auto;
+  height:auto;
+}
+
+.lifeCycleToast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:1000;
+  width:min(390px,calc(100vw - 44px));
+  padding:13px 15px;
+  border:1px solid var(--blue);
+  background:#fff;
+  box-shadow:0 10px 28px rgba(15,27,44,.15);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .18s ease,transform .18s ease;
+}
+
+.lifeCycleToast.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.lifeCycleToastTitle{
+  font-family:"Times New Roman",serif;
+  font-size:17px;
+  color:var(--blue);
+}
+
+.lifeCycleToastText{
+  margin-top:3px;
+  font-size:11px;
+  line-height:1.4;
+  color:#596579;
+}
+
+@media(max-width:950px){
+  .scenarioGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .componentRow,
+  .componentRow.future,
+  .componentRow.pension{
+    grid-template-columns:minmax(220px,1fr) 140px 140px;
+  }
+
+  .componentIdentity{
+    grid-column:1 / -1;
+  }
+
+  .fireControlBar{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .mortgageGrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:700px){
+  body{
+    padding:10px;
+  }
+
+  .hero,
+  .panel,
+  .lifecyclePanel{
+    padding:17px;
+  }
+
+  .scenarioGrid,
+  .riskArea,
+  .metrics,
+  .assumptionGrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .componentRow,
+  .componentRow.future,
+  .componentRow.pension{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .componentIdentity{
+    grid-column:1 / -1;
+  }
+
+  .resultTop{
+    flex-direction:column;
+  }
+
+  .freedomBox{
+    text-align:left;
+    min-width:0;
+  }
+
+  .riskBlock{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .chartWrap{
+    height:430px;
+  }
+
+  .taxField{
+    grid-column:1 / -1;
+  }
+
+  .mortgageGrid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:480px){
+  .scenarioGrid,
+  .metrics,
+  .assumptionGrid{
+    grid-template-columns:1fr;
+  }
+
+  .componentRow,
+  .componentRow.future,
+  .componentRow.pension{
+    grid-template-columns:1fr;
+  }
+
+  .miniField,
+  .componentIdentity{
+    grid-column:1;
+  }
+}
+  
+  .scenarioFieldHighlight{
+  border:1px solid var(--blue);
+  padding:8px;
+}
+  
+  .fireTargetCell{
+  width:210px;
+  padding:7px;
+  border:1px solid var(--blue);
+}
+  .scenarioField input{
+  text-align:right;
+}
+
+.fireTargetCell label{
+  color:var(--blue);
+}
+  
+.scenarioField label,
+.miniField label,
+.assumptionField label{
+  display:block;
+  min-height:28px;
+  margin-bottom:-10px;
+}
+  
+  input{
+  text-align:right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.panel{border:1px solid var(--line);background:#fff}
+.header{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;padding:18px 20px;border-bottom:1px solid var(--line)}
+.kicker{font-size:10px;font-weight:700;letter-spacing:.13em;color:var(--blue);margin-bottom:5px}.title{font-family:"Times New Roman",serif;font-size:27px;line-height:1.05}.sub{margin-top:5px;color:var(--muted);font-size:11px}
+.example{border:1px solid var(--blue);padding:8px 12px;min-width:260px;text-align:right}.exampleLabel{font-size:9px;font-weight:700;letter-spacing:.12em;color:var(--blue);text-transform:uppercase}.modelLabel{font-family:"Times New Roman",serif;font-size:19px;margin-top:3px}.modelMeta{font-size:10px;color:var(--muted);margin-top:3px}
+.riskbar{display:flex;align-items:center;gap:12px;padding:11px 20px;border-bottom:1px solid var(--line);background:var(--soft)}.riskTitle{font-weight:700;font-size:10px;letter-spacing:.08em}.dots{display:flex;gap:5px}.riskDot{width:12px;height:12px;border-radius:50%;border:1px solid #c5ccd6;background:#fff;cursor:pointer;padding:0}.riskDot.on{background:var(--red);border-color:var(--red)}.riskText{margin-left:auto;color:var(--muted);font-size:10px}
+.metrics{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--line)}.metric{padding:11px 14px;border-right:1px solid var(--line)}.metric:last-child{border-right:0}.metricLabel{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}.metricValue{font-family:"Times New Roman",serif;font-size:19px;margin-top:3px;text-align:right}
+.content{display:grid;grid-template-columns:minmax(420px,.9fr) minmax(440px,1.1fr);gap:0}.holdings{border-right:1px solid var(--line)}.blockHead{padding:12px 14px;border-bottom:1px solid var(--line)}.blockTitle{font-family:"Times New Roman",serif;font-size:17px}.blockSub{font-size:10px;color:var(--muted);margin-top:2px}
+table{width:100%;border-collapse:collapse}th,td{padding:8px 10px;border-bottom:1px solid #edf0f4;text-align:left}th{font-size:9px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;background:#fbfcfe}td.num,th.num{text-align:right}.name{font-weight:600}.ticker{font-size:9px;color:var(--muted);margin-top:2px}.chartWrap{padding:0}.canvasBox{height:300px;padding:12px 14px 4px}canvas{width:100%;height:100%;display:block}.footnote{padding:8px 14px 12px;border-top:1px solid #edf0f4;color:var(--muted);font-size:9px;line-height:1.4}
+.empty{padding:25px;color:var(--muted)}
+@media(max-width:820px){.header{grid-template-columns:1fr}.example{text-align:left}.metrics{grid-template-columns:repeat(2,1fr)}.metric{border-bottom:1px solid var(--line)}.content{grid-template-columns:1fr}.holdings{border-right:0;border-bottom:1px solid var(--line)}}
+
+
+#riskDots .riskDot{
+  width:8px;
+  height:8px;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:#d1d5db;
+}
+
+#riskDots .riskDot.active{
+  background:#d64242;
+}
+
+#tableHoldings{
+  font-size:11px;
+  color:#334155;
+}
+
+#tableHoldings td{
+  font-weight:400;
+  line-height:1.15;
+}
+
+#tableHoldings .instrumentName{
+  font-size:12px;
+  font-weight:600;
+  color:#1f2937;
+}
+
+#tableHoldings .instrumentTicker{
+  font-size:8px;
+  font-weight:400;
+  color:#94a3b8;
+}
+
+#tableHoldings th{
+  font-size:8px;
+  font-weight:600;
+  letter-spacing:.08em;
+  color:#64748b;
+}
+
+.metricValue{
+font-size:16px;
+  font-weight:540;
+  color:#4E79BD;
+  
+  
+  }
+  
+  .chartWrap{
+  border-left:none;
+  border-top:none;
+
+    margin-top:0px;
+  }
+  
+  .holdings{
+ border:1px solid #dbe1e9;
+     border-top:none;
+  }
+  
+  .riskbar{
+   border:1px solid #dbe1e9;
+    margin-bottom:17px;
+     border-top:none;
+  }
+    .metrics{
+   border:1px solid #dbe1e9;
+    
+    }
+  
+  .example{
+  margin-right:-17px;
+  }
+  /* =====================================================
+   LIFE CYCLE INTRO
+===================================================== */
+
+.lifeIntro{
+  margin:22px 0 28px;
+  padding:30px 32px 26px;
+  background:#fff;
+  border-top:1px solid #d9dee7;
+  border-bottom:1px solid #d9dee7;
+}
+
+
+/* TOP */
+
+.lifeIntroTop{
+  display:grid;
+  grid-template-columns:minmax(0,0.9fr) minmax(420px,1.1fr);
+  gap:48px;
+  align-items:center;
+}
+
+
+.lifeIntroKicker{
+  margin-bottom:8px;
+
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.11em;
+
+  color:#4E79BD;
+}
+
+
+.lifeIntroTitle{
+  margin:0 0 13px;
+
+  max-width:580px;
+
+  font-family:"Times New Roman", serif;
+  font-size:29px;
+  line-height:1.08;
+  font-weight:400;
+
+  color:#0f1b2c;
+}
+
+
+.lifeIntroText{
+  max-width:650px;
+
+  font-size:13px;
+  line-height:1.65;
+
+  color:#536070;
+}
+
+
+
+/* =====================================================
+   VISUAL
+===================================================== */
+
+.lifeIntroVisual{
+  display:grid;
+  grid-template-columns:1fr 44px 1.35fr;
+  align-items:center;
+  gap:12px;
+}
+
+
+.introVisualBlock{
+  min-width:0;
+}
+
+
+.introVisualLabel{
+  margin-bottom:8px;
+
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.11em;
+
+  color:#7a8492;
+}
+
+
+.introVisualCaption{
+  margin-top:7px;
+
+  font-size:10px;
+  line-height:1.3;
+
+  color:#7a8492;
+}
+
+
+
+/* LEDGER */
+
+.ledgerSheet{
+  height:106px;
+
+  padding:16px 14px;
+
+  border:1px solid #cfd5dd;
+  background:#fafbfc;
+
+  box-sizing:border-box;
+}
+
+
+.ledgerLine{
+  display:grid;
+  grid-template-columns:1fr 36%;
+  gap:12px;
+
+  margin-bottom:10px;
+}
+
+
+.ledgerLine span,
+.ledgerLine strong{
+  display:block;
+  height:4px;
+
+  background:#d9dee5;
+}
+
+
+.ledgerLine strong{
+  background:#bfc7d1;
+}
+
+
+.ledgerTotal{
+  width:52%;
+  height:5px;
+
+  margin-left:auto;
+  margin-top:13px;
+
+  background:#8e99a7;
+}
+
+
+
+/* ARROW */
+
+.introVisualArrow{
+  display:flex;
+  align-items:center;
+}
+
+
+.introArrowLine{
+  height:1px;
+  flex:1;
+
+  background:#aeb7c3;
+}
+
+
+.introArrowHead{
+  position:relative;
+  top:-1px;
+
+  font-family:"Times New Roman", serif;
+  font-size:25px;
+  line-height:1;
+
+  color:#4E79BD;
+}
+
+
+
+/* MOUNTAIN */
+
+.miniMountain{
+  height:106px;
+
+  padding:5px 8px 0;
+
+  border-bottom:1px solid #d5dae1;
+
+  box-sizing:border-box;
+}
+
+
+.miniMountain svg{
+  display:block;
+
+  width:100%;
+  height:78px;
+}
+
+
+.miniMountainFill{
+  fill:rgba(78,121,189,.10);
+}
+
+
+.miniMountainLine{
+  fill:none;
+
+  stroke:#4E79BD;
+  stroke-width:2;
+}
+
+
+.miniFreedomLine{
+  stroke:#9da7b4;
+  stroke-width:1;
+  stroke-dasharray:3 3;
+}
+
+
+.miniFreedomDot{
+  fill:#4E79BD;
+}
+
+
+.miniMountainLabels{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+
+  margin-top:3px;
+
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.06em;
+
+  color:#7b8490;
+}
+
+
+.miniMountainLabels span:nth-child(2){
+  text-align:center;
+  color:#4E79BD;
+}
+
+
+.miniMountainLabels span:last-child{
+  text-align:right;
+}
+
+
+
+/* =====================================================
+   COMPARISON
+===================================================== */
+
+.lifeIntroCompare{
+  margin-top:28px;
+
+  border-top:1px solid #e0e4e9;
+  border-bottom:1px solid #e0e4e9;
+}
+
+
+.compareHead,
+.compareRow{
+  display:grid;
+  grid-template-columns:1fr 50px 1fr;
+  align-items:center;
+}
+
+
+.compareHead{
+  padding:10px 12px;
+
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.10em;
+
+  color:#6f7987;
+
+  background:#f7f8fa;
+}
+
+
+.compareHead div:last-child{
+  color:#4E79BD;
+}
+
+
+.compareRow{
+  min-height:38px;
+  padding:0 12px;
+
+  border-top:1px solid #edf0f3;
+
+  font-size:11px;
+  color:#4f5967;
+}
+
+
+.compareRow > div:last-child{
+  color:#162235;
+  font-weight:600;
+}
+
+
+.compareArrow{
+  text-align:center;
+
+  font-size:15px;
+  color:#4E79BD;
+}
+
+
+
+/* =====================================================
+   DECISION
+===================================================== */
+
+.lifeIntroDecision{
+  display:grid;
+  grid-template-columns:190px 190px 1fr;
+  gap:22px;
+  align-items:center;
+
+  padding-top:22px;
+}
+
+
+.decisionTag{
+  font-size:9px;
+  line-height:1.5;
+  font-weight:700;
+  letter-spacing:.08em;
+
+  color:#4E79BD;
+}
+
+
+.decisionDot{
+  padding:0 4px;
+  color:#a4acb7;
+}
+
+
+.decisionTitle{
+  font-family:"Times New Roman", serif;
+  font-size:19px;
+
+  color:#142033;
+}
+
+
+.decisionText{
+  max-width:650px;
+
+  font-size:11px;
+  line-height:1.55;
+
+  color:#697381;
+}
+
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:850px){
+
+  .lifeIntro{
+    padding:24px 20px;
+  }
+
+  .lifeIntroTop{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .lifeIntroDecision{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+}
+
+
+@media(max-width:560px){
+
+  .lifeIntroVisual{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .introVisualArrow{
+    display:none;
+  }
+
+  .compareHead,
+  .compareRow{
+    grid-template-columns:1fr 28px 1fr;
+  }
+
+}
+
+.liabilityMainHead{
+  padding-bottom:12px;
+  margin-bottom:12px;
+
+  border-bottom:1px solid #d9dee7;
+}
+
+
+.liabilitySection{
+  padding:8px 0 14px;
+}
+
+
+.liabilitySection + .liabilitySection{
+  padding-top:16px;
+  border-top:1px solid #d9dee7;
+}
+
+
+.liabilitySectionTitle{
+  margin-bottom:4px;
+
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+
+  color:#4E79BD;
+}
+
+
+/* OTHER LIABILITIES */
+
+.otherLiabilitiesIntro{
+  max-width:850px;
+
+  margin:4px 0 13px;
+
+  font-size:10px;
+  line-height:1.5;
+
+  color:#667180;
+}
+
+
+.liabilityRules{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+
+.liabilityRule{
+  display:grid;
+  grid-template-columns:25px 1fr;
+  gap:8px;
+}
+
+
+.liabilityRuleMark{
+  font-size:9px;
+  font-weight:700;
+
+  color:#4E79BD;
+}
+
+
+.liabilityRule strong{
+  display:block;
+
+  margin-bottom:3px;
+
+  font-size:10px;
+  color:#243247;
+}
+
+
+.liabilityRule span{
+  display:block;
+
+  font-size:9px;
+  line-height:1.45;
+
+  color:#6b7582;
+}
+
+
+.liabilityConvention{
+  margin-top:13px;
+  padding-top:9px;
+
+  border-top:1px solid #e5e8ec;
+
+  font-size:9px;
+  line-height:1.45;
+  font-weight:600;
+
+  color:#4E79BD;
+}
+
+
+@media(max-width:700px){
+
+  .liabilityRules{
+    grid-template-columns:1fr;
+  }
+
+}
+  
+  .componentPicker{
+  display:grid;
+  grid-template-columns:
+    repeat(7, minmax(0, 1fr));
+  gap:8px;
+
+  width:100%;
+}
+  
+  .componentBtn{
+  width:100%;
+  min-width:0;
+  white-space:nowrap;
+}
+  
+  .liabilityBtn{
+  margin-left:8px;
+  border-left:2px solid #4E79BD;
+}
+
+.liabilityBtn.active{
+  color:#4E79BD;
+  border-color:#4E79BD;
+  background:#f7f9fc;
+}
+  .liabilityBtn{
+  margin-left:0px;
+  border-left:2px solid #d64242;
+}
+
+.liabilityBtn.active{
+  color:#d64242;
+  border-color:#d64242;
+  background:#f7f9fc;
+}
+  
+  /* ASSETS / RESOURCES */
+
+.componentBtn{
+  border-left:2px solid #4E79BD;
+margin-right:-5px;
+  }
+
+
+/* LIABILITIES */
+
+.componentBtn.liabilityBtn{
+  border-left:2px solid #d64242;
+margin-right:15px !important; 
+  }
+
+
+/* ACTIVE LIABILITY TAB */
+
+.componentBtn.liabilityBtn.active{
+  color:#d64242;
+  border-color:#d64242;
+  background:#f7f9fc;
+}
+
+
+
+.resultTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:24px;
+}
+
+.freedomBox{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width:280px;
+}
+
+.freedomLabel{
+  font-size:10px;
+  color:#50627b;
+  margin-bottom:8px;
+}
+
+.freedomEstimates{
+  display:grid;
+  grid-template-columns:70px 100px 70px;
+  align-items:end;
+  justify-content:center;
+  gap:12px;
+}
+
+.freedomEstimate{
+  text-align:center;
+}
+
+.freedomEstimateLabel{
+  font-family:Arial,sans-serif;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:#8993a3;
+  margin-bottom:4px;
+}
+
+.freedomEstimate.expected
+.freedomEstimateLabel{
+  color:#4E79BD;
+}
+
+.freedomEstimateValue{
+  font-family:"Times New Roman",serif;
+  font-size:23px;
+  line-height:1;
+  font-weight:400;
+  color:#8b95a5;
+  font-variant-numeric:tabular-nums;
+}
+
+.freedomAge{
+  font-family:"Times New Roman",serif;
+  font-size:35px;
+  line-height:1;
+  font-weight:400;
+  color: var(--red);
+  font-variant-numeric:tabular-nums;
+}
+
+@media(max-width:650px){
+  .resultTop{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .freedomBox{
+    width:100%;
+    min-width:0;
+  }
+}
+
+
+
+.freedomRange{
+  margin-top:7px;
+  min-height:13px;
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  line-height:1.4;
+  color:#7b8796;
+  text-align:center;
+}
+
+.freedomLabel{
+  font-size:12px;
+  font-weight:700;
+  color:#243247;
+  margin-bottom:3px;
+}
+
+.freedomSubtext{
+  max-width:260px;
+  margin:4px auto 12px;
+  font-size:10px;
+  line-height:1.5;
+  color:#8993a3;
+  text-align:center;
+}
+
+
+
+
+
+.resultHeading{
+  flex:1;
+  min-width:0;
+}
+
+.resultHeading .freedomSubtext{
+  max-width:490px;
+  margin:10px 0 0;
+  font-size:11px;
+  line-height:1.6;
+  font-weight:400;
+  color:#8993a3;
+  text-align:left;
+}
+
+.freedomBox{
+  flex:0 0 280px;
+  align-items:center;
+}
+
+
+
+
+
+
+
+/* =========================================
+   PRIVATE PENSION — SINGLE ROW
+========================================= */
+
+.optionalComponent[data-panel="privatePension"] .componentRow{
+  display:grid;
+  grid-template-columns:
+    minmax(180px, 1.5fr)
+    repeat(4, minmax(0, 1fr));
+  gap:12px;
+  align-items:start;
+}
+
+.optionalComponent[data-panel="privatePension"] .componentIdentity,
+.optionalComponent[data-panel="privatePension"] .miniField{
+  min-width:0;
+}
+
+.optionalComponent[data-panel="privatePension"] .miniField input{
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* =========================================
+   LIFE CYCLE MOUNTAIN TOOLTIP
+========================================= */
+
+#lifeChart{
+  cursor:crosshair;
+}
+
+.lifeChartTooltip{
+  position:absolute;
+  display:none;
+  z-index:30;
+  pointer-events:none;
+
+  min-width:165px;
+  padding:10px 12px;
+
+  background:#ffffff;
+  border:1px solid #4E79BD;
+  box-shadow:0 4px 14px rgba(15,27,44,.10);
+
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  color:#172033;
+}
+
+.lifeChartTooltipTitle{
+  font-weight:bold;
+  padding-bottom:6px;
+  margin-bottom:6px;
+  border-bottom:1px solid #e4e8ee;
+}
+
+.lifeChartTooltipRow{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:3px 0;
+}
+
+.lifeChartTooltipValue{
+  color:#4E79BD;
+  font-weight:bold;
+}
+/* =========================================
+   LIFE CYCLE — EQUAL METRIC CELLS
+========================================= */
+
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  width:100%;
+}
+
+.metrics .metric{
+  min-width:0;
+  width:auto;
+  box-sizing:border-box;
+}
+
+
+/* =====================================================
+   LIFE CYCLE — TWO INVESTMENT PHASES
+===================================================== */
+
+.riskArea{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+  width:100%;
+  align-items:stretch;
+}
+
+
+/* =====================================================
+   PHASE CARDS
+===================================================== */
+
+.riskBlock{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+
+  padding:18px 20px;
+
+  background:#ffffff;
+  border:1px solid #dce3ec;
+  border-radius:0;
+
+  box-sizing:border-box;
+}
+
+
+/* =====================================================
+   PHASE HEADER
+===================================================== */
+
+.riskPhaseHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  min-height:42px;
+  margin-bottom:18px;
+}
+
+.riskPhaseIdentity{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.riskPhaseNumber{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  width:34px;
+  height:34px;
+  flex:0 0 34px;
+
+  background:#edf3fa;
+  border:1px solid #dce6f3;
+
+  color:#4E79BD;
+  font-family:"Times New Roman",serif;
+  font-size:15px;
+  font-weight:700;
+}
+
+.riskTitle{
+  font-family:"Times New Roman",serif;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:.035em;
+  color:#172033;
+}
+
+.riskPhaseSubtitle{
+  margin-top:4px;
+
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  color:#7b8492;
+}
+
+.riskReturn:empty{
+  display:none;
+}
+
+
+/* =====================================================
+   RISK SELECTOR
+===================================================== */
+
+.riskBlock .riskSelector{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+
+  width:100%;
+  margin:0;
+  padding:0 0 17px;
+
+  border-bottom:1px solid #e6eaf0;
+}
+
+.riskBlock .riskWord{
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  color:#7b8492;
+  white-space:nowrap;
+}
+
+.riskBlock .riskDots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  flex:1;
+  min-width:0;
+}
+
+/*
+  Existing .riskDot appearance and
+  .riskDot.active behavior remain unchanged.
+*/
+
+
+/* =====================================================
+   PHASE METRICS
+===================================================== */
+
+.riskMetrics{
+  display:flex;
+  flex-direction:column;
+  gap:0;
+
+  margin-top:15px;
+}
+
+.riskMetricRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+
+  min-height:34px;
+
+  font-family:"Times New Roman",serif;
+  font-size:13px;
+  color:#64748b;
+}
+
+.riskMetricValue{
+  flex:0 0 auto;
+
+  font-family:"Times New Roman",serif;
+  font-size:14px;
+  font-weight:600;
+  color:#172033;
+
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* =====================================================
+   EXPECTED REAL RETURN
+===================================================== */
+
+.riskMetricFinal{
+  margin-top:9px;
+  padding-top:13px;
+
+  border-top:1px solid #dce3ec;
+
+  font-size:13px;
+  font-weight:700;
+  color:#172033;
+}
+
+.riskMetricReal{
+  font-size:21px;
+  font-weight:700;
+  color:#4E79BD;
+}
+
+
+/* =====================================================
+   COMMON ECONOMIC ASSUMPTIONS
+===================================================== */
+
+.riskAssumptions{
+  grid-column:1 / -1;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px 20px;
+
+  padding:12px 2px 0;
+
+  border-top:1px solid #e6eaf0;
+
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  color:#64748b;
+}
+
+.riskAssumptionsLeft{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.riskAssumptionsLeft strong{
+  color:#172033;
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+}
+
+.riskAssumptionSeparator{
+  color:#a5afbd;
+}
+
+.riskAssumptionsNote{
+  font-style:italic;
+  color:#7b8492;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:720px){
+
+  .riskArea{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+  .riskBlock{
+    padding:16px;
+  }
+
+  .riskAssumptions{
+    grid-column:1;
+    padding-top:12px;
+  }
+
+  .riskMetricReal{
+    font-size:19px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================
+   LIFE CYCLE — COMPACT PHASE CARDS
+===================================================== */
+
+.riskArea{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-items:stretch;
+  width:100%;
+}
+
+.riskBlock{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+
+  min-width:0;
+  height:auto;
+  min-height:0;
+
+  padding:14px 18px 15px;
+
+  background:#ffffff;
+  border:1px solid #dce3ec;
+  border-radius:0;
+  box-sizing:border-box;
+}
+
+
+/* HEADER */
+
+.riskPhaseHeader{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:12px;
+
+  min-height:0;
+  margin:0 0 13px;
+}
+
+.riskPhaseIdentity{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:0;
+}
+
+.riskPhaseNumber{
+  width:30px;
+  height:30px;
+  flex:0 0 30px;
+}
+
+
+/* RISK SELECTOR */
+
+.riskBlock .riskSelector{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+
+  width:100%;
+  margin:0;
+  padding:8px 0 12px;
+
+  border-bottom:1px solid #e6eaf0;
+}
+
+.riskBlock .riskDots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:1;
+  gap:10px;
+}
+
+
+/* =====================================================
+   METRICS — LEFT ALIGNED, FIXED VALUE COLUMN
+===================================================== */
+
+.riskMetrics{
+  display:flex;
+  flex-direction:column;
+
+  align-self:stretch;
+  width:100%;
+  max-width:none;
+
+  margin:5px 0 0;
+  padding:0;
+  gap:0;
+  
+  margin-top:-10px;
+}
+
+.riskMetricRow{
+  display:grid;
+
+  grid-template-columns:
+    minmax(0,220px)
+    90px;
+
+  justify-content:start;
+  align-items:center;
+  column-gap:14px;
+
+  min-height:29px;
+  margin:0;
+  padding:0;
+
+  font-family:"Times New Roman",serif;
+  font-size:13px;
+  color:#64748b;
+
+  text-align:left;
+}
+
+.riskMetricRow > span:first-child{
+  text-align:left;
+  min-width:0;
+}
+
+.riskMetricValue{
+  display:block;
+
+  width:100%;
+  text-align:right;
+
+  font-size:13px;
+  font-weight:500;
+  color:#172033;
+
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* FINAL REAL RETURN */
+
+.riskMetricFinal{
+  min-height:37px;
+  margin-top:6px;
+  padding-top:9px;
+
+  border-top:1px solid #dce3ec;
+margin-top:-5px;
+  font-weight:500;
+color:#4E79BD;
+}
+
+.riskMetricReal{
+  font-size:13px;
+  font-weight:500;
+  color:#4E79BD;
+margin-top:-5px;
+ 
+  }
+
+
+/* COMMON FOOTER */
+
+.riskAssumptions{
+  grid-column:1 / -1;
+  margin:0;
+  padding:8px 2px 0;
+}
+
+
+/* RESPONSIVE */
+
+@media(max-width:720px){
+
+  .riskArea{
+    grid-template-columns:1fr;
+  }
+
+  .riskBlock{
+    padding:14px;
+  }
+
+  .riskMetricRow{
+    grid-template-columns:
+      minmax(0,1fr)
+      90px;
+  }
+
+}
+
+
+.riskPhaseNumber{
+  font-size:25px;
+  font-weight:400;
+  line-height:1;
+}
+
+
+.modelNote{
+
+margin-bottom:15px;
+
+
+}
+
+
+
+.metricsMountain{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  width:100%;
+  border:1px solid #dbe1e9;
+  
+  border-top:none;
+}
+
+.riskAnchorHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+
+  transform: translateX(-20px);
+}
+
+
+
+.riskModelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.riskModelLabel {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.riskModelValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4E79BD;
+  text-align: right;
+}
+
+
+/* =====================================================
+   05 FINANCIAL FREEDOM DAY
+   NEPTOON BALANCE SHEET & INFORMATION
+===================================================== */
+
+#lifeBalancePanel {
+  --lifeBlue:#4E79BD;
+  --lifeNavy:#172b4d;
+  --lifeText:#243247;
+  --lifeMuted:#64748b;
+  --lifeBorder:#dce3ed;
+  --lifeSoftBlue:#f3f7fc;
+}
+
+
+/* =====================================================
+   EXPANDABLE BODY
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceBody {
+  padding-top:18px;
+}
+
+#lifeBalancePanel .lifeBalanceBody[hidden] {
+  display:none !important;
+}
+
+
+/* =====================================================
+   META INFORMATION
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceMeta {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 18px;
+  margin-bottom:22px;
+  font-size:11px;
+  color:var(--lifeMuted);
+}
+
+#lifeBalancePanel #lifeBalanceDate {
+  font-weight:700;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel #lifeBalanceCurrency {
+  font-weight:700;
+  color:var(--lifeNavy);
+}
+
+
+/* =====================================================
+   FREEDOM DAY INTRODUCTION
+===================================================== */
+
+#lifeBalancePanel .freedomDayIntro {
+  margin-bottom:28px;
+}
+
+#lifeBalancePanel .freedomDayKicker {
+  margin-bottom:8px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .freedomDayHeadline {
+  margin-bottom:10px;
+  font-size:21px;
+  line-height:1.3;
+  font-weight:700;
+  color:var(--lifeNavy);
+}
+
+#lifeBalancePanel .freedomDayIntroduction {
+  max-width:850px;
+  font-size:13px;
+  line-height:1.75;
+  color:var(--lifeText);
+}
+
+
+/* =====================================================
+   SECTION HEADINGS
+===================================================== */
+
+#lifeBalancePanel .freedomDaySectionHead {
+  margin:22px 0 15px;
+}
+
+#lifeBalancePanel .freedomDaySectionTitle {
+  margin-bottom:5px;
+  font-size:15px;
+  line-height:1.4;
+  font-weight:700;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .freedomDaySectionHint {
+  font-size:12px;
+  line-height:1.6;
+  color:var(--lifeMuted);
+}
+
+
+/* =====================================================
+   COMMON BALANCE SHEET GRID
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceSheet {
+  display:grid;
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+  column-gap:22px;
+  align-items:stretch;
+}
+
+#lifeBalancePanel .lifeBalanceColumn {
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  padding:16px 18px;
+  border:1px solid var(--lifeBorder);
+  border-bottom:0;
+  background:#fff;
+}
+
+#lifeBalancePanel .lifeBalanceColumnTitle {
+  padding-bottom:11px;
+  margin-bottom:8px;
+  border-bottom:1px solid var(--lifeBorder);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.35px;
+  text-transform:uppercase;
+  color:var(--lifeBlue);
+}
+
+
+/* =====================================================
+   BALANCE SHEET ROWS
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceRows {
+  display:flex;
+  flex-direction:column;
+}
+
+#lifeBalancePanel .lifeBalanceRow {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  min-height:40px;
+  padding:10px 0;
+  border-bottom:1px solid #edf1f5;
+  font-size:12px;
+  color:var(--lifeText);
+}
+
+#lifeBalancePanel .lifeBalanceRow:last-child {
+  border-bottom:0;
+}
+
+#lifeBalancePanel .lifeBalanceRowLabelWrap {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:0;
+}
+
+#lifeBalancePanel .lifeBalanceRowLabel {
+  min-width:0;
+  line-height:1.4;
+}
+
+#lifeBalancePanel .lifeBalanceRow strong,
+#lifeBalancePanel .lifeBalanceRowValue {
+  flex:0 0 auto;
+  white-space:nowrap;
+  font-size:12px;
+  font-weight:700;
+  color:var(--lifeNavy);
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* =====================================================
+   BALANCE SHEET ICONS
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceRowIcon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 16px;
+  width:16px;
+  height:16px;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .lifeBalanceRowIcon svg {
+  display:block;
+  width:15px;
+  height:15px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  fill:none;
+}
+
+
+/* =====================================================
+   NET ECONOMIC EQUITY
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceEquity {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+
+  margin-top:auto;
+  padding:13px 0 4px;
+
+  border-top:1px solid var(--lifeBlue);
+
+  font-size:12px;
+  font-weight:700;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .lifeBalanceEquity strong {
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:700;
+  color:var(--lifeNavy);
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* =====================================================
+   SHARED TOTALS ROW
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceTotals {
+  grid-column:1 / -1;
+
+  display:grid;
+  grid-template-columns:
+    minmax(0,1fr)
+    minmax(0,1fr);
+  column-gap:22px;
+}
+
+#lifeBalancePanel .lifeBalanceTotals .lifeBalanceTotal {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+
+  min-width:0;
+  padding:14px 18px;
+
+  border:1px solid var(--lifeBorder);
+  border-top:2px solid var(--lifeNavy);
+
+  background:var(--lifeSoftBlue);
+
+  font-size:12px;
+  font-weight:700;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .lifeBalanceTotals .lifeBalanceTotal strong {
+  flex:0 0 auto;
+  white-space:nowrap;
+  font-size:13px;
+  font-weight:700;
+  color:var(--lifeNavy);
+  font-variant-numeric:tabular-nums;
+}
+
+
+/* =====================================================
+   PERSONALIZED FREEDOM NARRATIVE
+===================================================== */
+
+#lifeBalancePanel .freedomDayNarrative {
+  margin-top:30px;
+}
+
+#lifeBalancePanel .freedomDayItems {
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+#lifeBalancePanel .freedomDayItem {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  min-width:0;
+
+  padding:16px;
+
+  border:1px solid var(--lifeBorder);
+  background:#fff;
+}
+
+#lifeBalancePanel .freedomDayItemIcon {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 34px;
+
+  width:34px;
+  height:34px;
+
+  background:var(--lifeSoftBlue);
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .freedomDayItemIcon svg {
+  width:18px;
+  height:18px;
+  stroke:currentColor;
+  stroke-width:1.8;
+  fill:none;
+}
+
+#lifeBalancePanel .freedomDayItemContent {
+  flex:1;
+  min-width:0;
+}
+
+#lifeBalancePanel .freedomDayItemHead {
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:5px 12px;
+  margin-bottom:7px;
+}
+
+#lifeBalancePanel .freedomDayItemTitle {
+  font-size:13px;
+  font-weight:700;
+  color:var(--lifeBlue);
+}
+
+#lifeBalancePanel .freedomDayItemValue {
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap;
+  color:var(--lifeNavy);
+  font-variant-numeric:tabular-nums;
+}
+
+#lifeBalancePanel .freedomDayItemText {
+  font-size:12px;
+  line-height:1.7;
+  color:var(--lifeText);
+}
+
+
+/* =====================================================
+   METHODOLOGY
+===================================================== */
+
+#lifeBalancePanel .lifeBalanceFooter {
+  margin-top:26px;
+  padding-top:15px;
+  border-top:1px solid var(--lifeBorder);
+}
+
+#lifeBalancePanel .lifeBalanceFootnote,
+#lifeBalancePanel .freedomDayMethodologyNote {
+  font-size:11px;
+  line-height:1.7;
+  color:var(--lifeMuted);
+}
+
+#lifeBalancePanel .freedomDayMethodologyNote {
+  margin-top:8px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:700px) {
+
+  #lifeBalancePanel .lifeBalanceSheet {
+    grid-template-columns:minmax(0,1fr);
+    row-gap:0;
+  }
+
+  #lifeBalancePanel .lifeBalanceColumn {
+    border-bottom:1px solid var(--lifeBorder);
+    margin-bottom:14px;
+  }
+
+  #lifeBalancePanel .lifeBalanceTotals {
+    grid-column:1;
+    grid-template-columns:minmax(0,1fr);
+    row-gap:10px;
+  }
+
+  #lifeBalancePanel .freedomDayItems {
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  #lifeBalancePanel .freedomDayHeadline {
+    font-size:19px;
+  }
+
+  #lifeBalancePanel .lifeBalanceTotal {
+    flex-wrap:wrap;
+  }
+
+}
+
+@media(max-width:420px) {
+
+  #lifeBalancePanel .lifeBalanceColumn {
+    padding:13px;
+  }
+
+  #lifeBalancePanel .lifeBalanceTotals .lifeBalanceTotal {
+    padding:13px;
+  }
+
+  #lifeBalancePanel .freedomDayItem {
+    padding:13px;
+  }
+
+}
+
+
+
+
+
+
+  .lifeIntroDecision {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 14px 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.decisionTag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #4E79BD;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.decisionDot {
+  opacity: 0.5;
+}
+  
+  
+  
+  /* =========================================
+   LIFE CYCLE — FOUR PHASES
+========================================= */
+
+.lifePhases {
+  border: 1px solid #dce2eb;
+  border-radius: 3px;
+  padding: 20px 22px 14px;
+  background: #fff;
+  font-family: "Times New Roman", serif;
+}
+
+.lifePhasesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.lifePhase {
+  min-width: 0;
+}
+
+.lifePhaseStep {
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  color: #4E79BD;
+  margin-bottom: 9px;
+}
+
+.lifePhaseIcon {
+  color: #4E79BD;
+  margin-bottom: 8px;
+  height: 17px;
+}
+
+.lifePhaseIcon svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.7;
+}
+
+.lifePhaseTitle {
+  font-size: 17px;
+  font-weight: 500;
+  color: #111827;
+  margin-bottom: 7px;
+}
+
+.lifePhaseText {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #526174;
+}
+
+.lifePhasesPrinciple {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 500;
+  color: #4E79BD;
+}
+
+.lifePhasesFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 18px;
+  padding-top: 15px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.lifePhasesFooter > svg {
+  width: 13px;
+  height: 13px;
+  color: #4E79BD;
+}
+
+.lifePhasesFooter a {
+  color: #4E79BD;
+  text-decoration: none;
+}
+
+.lifePhasesFooter a:hover {
+  text-decoration: underline;
+}
+
+.lifePhasesSeparator {
+  color: #94a3b8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+
+  .lifePhases {
+    padding: 18px 15px;
+  }
+
+  .lifePhasesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+  }
+
+  .lifePhasesPrinciple {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .lifePhasesGrid {
+    grid-template-columns: 1fr;
+  }
+
+}
+  
+  
+/* =========================================
+   LIFE CYCLE FAQ
+========================================= */
+
+.lifeFAQ {
+  width: 100%;
+  padding: 28px 0 36px;
+  scroll-margin-top: 80px;
+}
+
+.lifeFAQHeader {
+  margin-bottom: 22px;
+}
+
+.lifeFAQKicker {
+  color: #4E79BD;
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .10em;
+  margin-bottom: 8px;
+}
+
+.lifeFAQHeader h2 {
+  margin: 0 0 8px;
+  font-family: "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 400;
+  color: #17243a;
+}
+
+.lifeFAQHeader p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #64748b;
+}
+
+.lifeFAQList {
+  border-top: 1px solid #dce2eb;
+}
+
+.lifeFAQItem {
+  border-bottom: 1px solid #dce2eb;
+}
+
+.lifeFAQItem summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 4px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #17243a;
+}
+
+.lifeFAQItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.lifeFAQItem summary::marker {
+  content: "";
+}
+
+.lifeFAQItem summary:hover {
+  color: #4E79BD;
+}
+
+.lifeFAQItem summary svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  color: #4E79BD;
+  stroke-width: 1.8;
+  transition: transform .2s ease;
+}
+
+.lifeFAQItem[open] summary svg {
+  transform: rotate(180deg);
+}
+
+.lifeFAQAnswer {
+  padding: 0 36px 19px 4px;
+  max-width: 760px;
+  color: #526174;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+@media (max-width: 650px) {
+
+  .lifeFAQ {
+    padding: 24px 0;
+  }
+
+  .lifeFAQHeader h2 {
+    font-size: 22px;
+  }
+
+  .lifeFAQItem summary {
+    font-size: 13px;
+    padding: 15px 2px;
+  }
+
+  .lifeFAQAnswer {
+    padding-right: 14px;
+  }
+
+}
+
+  .lifePhases{
+  margin-top:10px;
+  margin-bottom:15px;
+  }
+.lifePhasesHeader {
+  margin-bottom: 24px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.lifePhasesKicker {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .10em;
+  color: #4E79BD;
+  margin-bottom: 8px;
+}
+
+.lifePhasesHeading {
+  font-family: "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: #17243a;
+  margin: 0 0 8px;
+}
+
+.lifePhasesIntro {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #64748b;
+  margin: 0;
+}
+  .lifeIntro{
+  
+  border: 1px solid #e5e7eb;
+  margin-top:15px;
+  margin-bottom:15px;
+  }
+
+
+
+/* =================================================
+   ASSET ROWS — FIVE COLUMN LAYOUT
+   Real Estate / Enterprise / Private Pension
+================================================= */
+
+.componentRow.realEstateRow,
+.componentRow.enterpriseRow,
+.componentRow.privatePensionRow {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 1fr)
+    minmax(95px, 125px)
+    minmax(105px, 135px)
+    minmax(90px, 115px)
+    minmax(75px, 95px);
+
+  gap: 10px;
+  align-items: center;
+}
+
+/* FIELDS */
+
+.realEstateRow .miniField,
+.enterpriseRow .miniField,
+.privatePensionRow .miniField {
+  min-width: 0;
+}
+
+/* INPUTS AND SELECTORS */
+
+.realEstateRow .miniField input,
+.realEstateRow .miniField select,
+.enterpriseRow .miniField input,
+.enterpriseRow .miniField select,
+.privatePensionRow .miniField input,
+.privatePensionRow .miniField select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 31px;
+}
+
+/* DROPDOWNS */
+
+.realEstateRow .miniField select,
+.enterpriseRow .miniField select,
+.privatePensionRow .miniField select {
+  padding: 4px 6px;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* PENSION PAL NOTE */
+
+.pensionTaxNote {
+  margin-top: 4px;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  line-height: 1.3;
+  color: #64748b;
+}
+
+/* =================================================
+   RESPONSIVE
+================================================= */
+
+@media (max-width: 750px) {
+
+  .componentRow.realEstateRow,
+  .componentRow.enterpriseRow,
+  .componentRow.privatePensionRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .realEstateRow .componentIdentity,
+  .enterpriseRow .componentIdentity,
+  .privatePensionRow .componentIdentity {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+
+/* ============================================
+   PRIVATE PENSION — COMPACT SINGLE ROW
+============================================ */
+
+.componentRow.privatePensionRow{
+  display:grid;
+  grid-template-columns:
+    minmax(150px, 1fr)
+    105px
+    115px
+    135px
+    105px
+    115px;
+
+  column-gap:10px;
+  row-gap:0;
+  align-items:start;
+  width:100%;
+  box-sizing:border-box;
+}
+
+.privatePensionRow .componentIdentity,
+.privatePensionRow .miniField{
+  min-width:0;
+  width:100%;
+}
+
+.privatePensionRow .miniField input,
+.privatePensionRow .miniField select{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+
+.privatePensionRow .miniField label{
+  display:block;
+  font-size:10px;
+  white-space:nowrap;
+}
+
+.privatePensionRow .pensionTaxNote{
+  margin-top:5px;
+  font-size:9px;
+  line-height:1.25;
+  color:#7b8492;
+}
+
+/* Responsive layout */
+@media(max-width:760px){
+  .componentRow.privatePensionRow{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    row-gap:12px;
+  }
+
+  .privatePensionRow .componentIdentity{
+    grid-column:1 / -1;
+  }
+}
+
+@media(max-width:480px){
+  .componentRow.privatePensionRow{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+
+/* ============================================
+   PRIVATE PENSION — FORCE SIX COLUMNS
+============================================ */
+
+.componentRow.privatePensionRow{
+  display:grid !important;
+
+  grid-template-columns:
+    minmax(145px, 1fr)
+    minmax(0, 100px)
+    minmax(0, 110px)
+    minmax(0, 125px)
+    minmax(0, 100px)
+    minmax(0, 110px) !important;
+
+  gap:8px !important;
+  align-items:start;
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+
+.componentRow.privatePensionRow > *{
+  min-width:0;
+  width:auto;
+  max-width:none;
+  grid-column:auto !important;
+  grid-row:auto !important;
+  flex:none;
+}
+
+.privatePensionRow .miniField input,
+.privatePensionRow .miniField select{
+  display:block;
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+
+.privatePensionRow .miniField label{
+  display:block;
+  font-size:9px;
+  white-space:nowrap;
+}
+
+.privatePensionRow .pensionTaxNote{
+  margin-top:5px;
+  font-size:9px;
+  line-height:1.2;
+  color:#7b8492;
+}
+
+/* Responsive */
+@media(max-width:760px){
+  .componentRow.privatePensionRow{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+
+
+
+
+
+/* =========================================
+   LIFE CYCLE FAQ — GROUP ACCORDION
+========================================= */
+
+.lifeFAQGroups{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.lifeFAQGroup{
+  border:1px solid #dce4ee;
+  background:#fff;
+}
+
+.lifeFAQGroupSummary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:17px 20px;
+  cursor:pointer;
+  list-style:none;
+  background:#f7f9fc;
+}
+
+.lifeFAQGroupSummary::-webkit-details-marker{
+  display:none;
+}
+
+.lifeFAQGroupTitle{
+  font-size:15px;
+  font-weight:525;
+  color:#243b5a;
+}
+
+.lifeFAQGroupSummary svg{
+  width:17px;
+  height:17px;
+  color:#4E79BD;
+  transition:transform .2s ease;
+}
+
+.lifeFAQGroup[open] >
+.lifeFAQGroupSummary svg{
+  transform:rotate(180deg);
+}
+
+.lifeFAQGroup .lifeFAQList{
+  padding:0 18px 16px;
+}
+
+.lifeFAQGroup .lifeFAQItem{
+  margin-top:8px;
+}
+
+
+
+
+/* =========================================
+   NEPTOON LIFE CYCLE — TOAST
+========================================= */
+
+#lifeCycleToast{
+
+  position:fixed;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+
+  background:#ffffff;
+  color:#243b5a;
+
+  border:1px solid #dce4ee;
+  border-left:4px solid #4E79BD;
+
+  padding:13px 22px;
+
+  font-family:Arial,sans-serif;
+  font-size:13px;
+  font-weight:500;
+  line-height:1.5;
+
+  box-shadow:
+    0 8px 28px rgba(15,27,44,.14);
+
+  z-index:99999;
+
+  max-width:calc(100% - 32px);
+  box-sizing:border-box;
+
+  text-align:center;
+  pointer-events:none;
+
+  display:none;
+
+  animation:lifeCycleToastIn .25s ease-out;
+
+}
+
+@keyframes lifeCycleToastIn{
+
+  from{
+    opacity:0;
+    transform:translate(-50%,12px);
+  }
+
+  to{
+    opacity:1;
+    transform:translate(-50%,0);
+  }
+
+}
+
+@media(max-width:600px){
+
+  #lifeCycleToast{
+    bottom:18px;
+    width:calc(100% - 32px);
+    padding:12px 16px;
+    font-size:12px;
+  }
+
+}
+
+
+
+/* =========================================
+   LIFE CYCLE — UNIFORM INPUT HEIGHT
+========================================= */
+
+.optionalComponent .miniField input,
+.optionalComponent .miniField select{
+
+  height:34px !important;
+  min-height:34px !important;
+  max-height:34px !important;
+
+  padding:0 9px !important;
+
+  box-sizing:border-box;
+
+  line-height:normal;
+
+  border-radius:0;
+
+}
+
+.mortgageField{
+
+.margin-top:5px;
+
+}
+
+
+
+/* =========================================
+   LIFE BALANCE — HEADER META
+========================================= */
+
+.lifeBalanceMeta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px;
+
+  margin-top:12px;
+}
+
+/* Financial Freedom Day */
+
+.lifeBalanceFreedom{
+  font-family:"Times New Roman",serif;
+  font-size:14px;
+  font-weight:600;
+  color:#243b5a;
+
+  margin-right:8px;
+}
+
+/* Shared pill */
+
+.lifeBalancePill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-height:24px;
+  padding:0 10px;
+
+  box-sizing:border-box;
+  border-radius:2px;
+
+  font-family:Arial,sans-serif;
+  font-size:10px;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+/* Currency pill */
+
+.lifeBalancePill.currency{
+  color:#365F9D;
+  background:#eaf1fa;
+  border:1px solid #c8d8ed;
+  letter-spacing:.3px;
+}
+
+/* Purchasing power pill */
+
+.lifeBalancePill.basis{
+  color:#687789;
+  background:#f8fafc;
+  border:1px solid #e1e6ed;
+  font-weight:400;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+  .lifeBalanceMeta{
+    gap:6px;
+  }
+
+  .lifeBalanceFreedom{
+    flex-basis:100%;
+    margin-right:0;
+    margin-bottom:2px;
+  }
+
+}
+
+
+/* =========================================
+   MORTGAGE — COST EXPLANATION
+========================================= */
+
+.mortgageCostNote{
+  margin-top:8px;
+  padding-left:2px;
+  font-size:10px;
+  line-height:1.5;
+  color:#7b8492;
+  font-style:italic;
+}
+
+
+
+
+
+/* =========================================
+   ASSUMPTIONS — TWO COLUMNS
+========================================= */
+
+.assumptionColumns{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+.assumptionGeneral,
+.assumptionRiskReturns{
+  min-width:0;
+}
+
+.assumptionRiskReturns{
+  border-left:1px solid #dce4ee;
+  padding-left:28px;
+}
+
+.assumptionColumnTitle{
+  color:#4E79BD;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+
+
+/* =========================================
+   ECONOMIC OUTLOOK — THREE RADIO DOTS
+========================================= */
+
+.economicOutlookField{
+  margin-top:20px;
+}
+
+.economicOutlookOptions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:9px;
+}
+
+.economicOutlookOption{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  font-size:12px;
+  color:#243b5a;
+}
+
+.economicOutlookOption input{
+  width:13px;
+  height:13px;
+  margin:0;
+  accent-color:#4E79BD;
+  cursor:pointer;
+}
+
+.economicOutlookNote{
+  margin-top:10px;
+  color:#7b8492;
+  font-size:10px;
+  line-height:1.5;
+}
+
+
+/* =========================================
+   RISK MODEL RETURNS — READ ONLY
+========================================= */
+
+.assumptionRiskRow{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 105px;
+  align-items:center;
+  gap:12px;
+  margin-bottom:9px;
+}
+
+.assumptionRiskName{
+  color:#243b5a;
+  font-size:12px;
+  line-height:1.4;
+}
+
+.assumptionRiskValue{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+
+  height:32px;
+  padding:0 10px;
+
+  background:#f8fafc;
+  border:1px solid #dce4ee;
+  border-radius:0;
+
+  color:#243b5a;
+  font-size:12px;
+  font-weight:600;
+  font-variant-numeric:tabular-nums;
+
+  box-sizing:border-box;
+  cursor:default;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:650px){
+
+  .assumptionColumns{
+    grid-template-columns:1fr;
+    gap:24px;
+  }
+
+  .assumptionRiskReturns{
+    border-left:none;
+    border-top:1px solid #dce4ee;
+    padding-left:0;
+    padding-top:20px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================
+   ASSUMPTIONS — VISUAL POLISH
+========================================= */
+
+/* More space below column kickers */
+
+.assumptionColumnTitle{
+  margin-bottom:24px;
+}
+
+
+/* Unified Neptoon blue radio buttons */
+
+.taxOption input[type="radio"],
+.economicOutlookOption input[type="radio"]{
+  accent-color:#4E79BD;
+  width:13px;
+  height:13px;
+  cursor:pointer;
+}
+
+
+/* Consistent radio alignment */
+
+.taxOption,
+.economicOutlookOption{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+  
+/* More breathing room below inflation */
+
+.assumptionGeneral .assumptionField:has(#inflation){
+  margin-bottom:22px;
+}
+
+
+.inflationSelect{
+  width:100%;
+  height:32px;
+  padding:0 10px;
+
+  border:1px solid #cbd5e1;
+  border-radius:0;
+  background:#fff;
+
+  color:#243b5a;
+  font-size:12px;
+  font-family:inherit;
+  text-align:right;
+
+  cursor:pointer;
+}
+
+.inflationSelect:focus{
+  outline:none;
+  border-color:#4E79BD;
+}
+
+
+.assumptionRiskIdentity{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:0;
+}
+
+.assumptionRiskLevel{
+  color:#4E79BD;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+  min-width:28px;
+  font-variant-numeric:tabular-nums;
+}
+
+.assumptionRiskName{
+  color:#243b5a;
+  font-size:12px;
+  min-width:0;
+}
+
+
+.assumptionColumns{
+margin-top:15px;
+}
+
+
+
+
+/* =========================================
+   HISTORY TOOLTIP
+========================================= */
+
+.historyTooltip{
+  position:absolute;
+  z-index:20;
+  min-width:190px;
+  padding:11px 13px;
+
+  background:#fff;
+  border:1px solid #dce4ee;
+  border-radius:0;
+
+  box-shadow:0 4px 16px rgba(15,27,44,.12);
+
+  font-family:"Times New Roman",serif;
+  font-size:12px;
+  color:#243b5a;
+
+  pointer-events:none;
+}
+
+.historyTooltip[hidden]{
+  display:none;
+}
+
+.historyTooltipDate{
+  font-weight:700;
+  margin-bottom:9px;
+}
+
+.historyTooltipRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  margin-bottom:7px;
+}
+
+.historyTooltipLabel{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.historyTooltipDot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  flex:0 0 auto;
+}
+
+.historyTooltipValue{
+  font-weight:700;
+  font-variant-numeric:tabular-nums;
+}
+
+.historyTooltipDivider{
+  border-top:1px solid #dce4ee;
+  margin:9px 0;
+}
+
+.historyTooltipDifference{
+  margin-bottom:0;
+}
+
+#historyCanvas{
+  cursor:crosshair;
+}
+
+
+
+.canvasBox{
+  position:relative;
+}
+
+
+.historyTooltip{
+  border:1px solid #4E79BD;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+#lifeCycleFAQ{
+  scroll-margin-top:90px;
+}
+
+/* =========================================
+   LIFE CYCLE · VALUATION SELECTOR
+========================================= */
+
+.lifeBalanceStateGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.lifeBalanceStateBtn{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+
+  min-width:0;
+  min-height:68px;
+  padding:12px 15px;
+
+  border:1px solid #d7e0ec;
+  border-radius:0;
+
+  background:#fff;
+  color:#172b4d;
+
+  text-align:left;
+  font-family:inherit;
+  cursor:pointer;
+
+  transition:
+    border-color .15s ease,
+    background .15s ease;
+}
+
+.lifeBalanceStateBtn:hover{
+  border-color:#4E79BD;
+  background:#f7faff;
+}
+
+.lifeBalanceStateBtn.is-active{
+  border-color:#4E79BD;
+  background:#edf3fb;
+  box-shadow:inset 3px 0 0 #4E79BD;
+}
+
+.lifeBalanceStateTitle{
+  font-size:13px;
+  font-weight:700;
+  line-height:1.35;
+  color:#243b60;
+}
+
+.lifeBalanceStateBtn.is-active
+.lifeBalanceStateTitle{
+  color:#315e9f;
+}
+
+.lifeBalanceStateSub{
+  margin-top:4px;
+  font-size:11px;
+  font-weight:400;
+  line-height:1.4;
+  color:#69788c;
+}
+
+.freedomDayIntroduction{
+  margin-top:4px;
+}
+
+@media(max-width:480px){
+  .lifeBalanceStateGrid{
+    gap:7px;
+  }
+
+  .lifeBalanceStateBtn{
+    padding:10px;
+    min-height:72px;
+  }
+
+  .lifeBalanceStateTitle{
+    font-size:12px;
+  }
+
+  .lifeBalanceStateSub{
+    font-size:10px;
+  }
+}
+  
+  .lifeBalanceStateGrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:14px;
+}
+  
+  @media(max-width:700px){
+  .lifeBalanceStateGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:7px;
+  }
+}
+.mortgageGrid{
+  display:grid;
+  grid-template-columns:
+    1.1fr
+    1.35fr
+    0.8fr
+    0.85fr
+    0.9fr
+    0.9fr;
+  gap:10px;
+  align-items:end;
+  width:100%;
+}
+  
+  .mortgageGrid{
+  display:grid;
+  grid-template-columns:
+    1.1fr
+    1.35fr
+    0.8fr
+    0.85fr
+    0.9fr
+    0.9fr;
+  gap:10px;
+  align-items:end;
+  width:100%;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  /* Mortgage, bank loan and pension toggles */
+
+.mortgageToggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:nowrap;
+  gap:8px;
+  white-space:nowrap;
+  flex-shrink:0;
+  cursor:pointer;
+}
+
+.mortgageToggle input[type="checkbox"]{
+  width:15px;
+  height:15px;
+  margin:0;
+  flex:0 0 15px;
+  accent-color:#4E79BD;
+  cursor:pointer;
+}
+
+.mortgageToggle span{
+  white-space:nowrap;
+  flex-shrink:0;
+}
+  
+  .mortgageHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.mortgageHead > div:first-child{
+  flex:1 1 auto;
+  min-width:0;
+}
+  
+/* =========================================
+   FUTURE RESOURCES — SINGLE ROW
+========================================= */
+
+.componentRow.future{
+  display:grid;
+  grid-template-columns:
+    minmax(220px, 2.5fr)
+    repeat(4, minmax(100px, 1fr));
+  align-items:end;
+  gap:10px;
+}
+
+.componentRow.future .componentIdentity{
+  min-width:0;
+  align-self:center;
+}
+
+.componentRow.future .miniField{
+  min-width:0;
+  width:100%;
+}
+
+.componentRow.future .miniField input{
+  width:100%;
+  box-sizing:border-box;
+}
+
+.componentRow.future .miniField input:disabled{
+  background:#f3f4f6;
+  color:#4b5563;
+}
+
+.mortgageField{
+margin-bottom:5px;
+}
+
+  
+/* FIVE-TAB APP SHELL OVERRIDES */
+body{padding:12px 12px 30px}
+
+.neptoon-app{width:min(1260px,100%)}
+.app-tab .page{width:100%;max-width:none}
+.app-tab:not(.active){display:none!important}
+[hidden]{display:none!important}
+
+
 :root{--np-blue:#4E79BD;--np-ink:#14243a;--np-border:#dce3ed;--np-muted:#617186;--np-bg:#f5f7fb}
 .neptoon-app{max-width:1260px;margin:0 auto;color:var(--np-ink);font-family:Georgia,'Times New Roman',serif;padding:0 16px 28px}
 .app-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:23px 4px 16px;border-bottom:1px solid var(--np-border)}
