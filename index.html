@@ -3917,7 +3917,33 @@ body{padding:12px 12px 30px}
 
 
 
+.lifeBalanceStateBtn {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  row-gap: 5px;
+  align-items: center;
+  text-align: left;
+}
 
+/* Icon — first column */
+.lifeBalanceStateBtn .lifeBalanceStateIcon {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Title — same row, right of icon */
+.lifeBalanceStateBtn .lifeBalanceStateTitle {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* Description — second row */
+.lifeBalanceStateBtn .lifeBalanceStateSub {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
 
 
 
