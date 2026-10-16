@@ -3891,6 +3891,41 @@ body{padding:12px 12px 30px}
 #lifeBalancePanel .lifeBalanceStateSub{font:11px/1.35 Arial,sans-serif;color:#667085;}
 @media(max-width:780px){#lifeBalancePanel .lifeBalanceStateGrid{grid-template-columns:repeat(2,minmax(0,1fr));}#lifeBalancePanel .panelHead{flex-wrap:wrap;}}
 @media(max-width:450px){#lifeBalancePanel .lifeBalanceStateGrid{grid-template-columns:1fr;}}
+
+
+.balanceComponentsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.balanceHeaderMeta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 700px) {
+  .balanceComponentsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </style></head><body><div class="neptoon-app" id="neptoonApp"><header class="app-header"><div class="app-brand"><div class="app-kicker">NEPTOON INVEST</div><div class="app-name">Life Cycle</div></div><div class="app-header-actions"><div class="lang-switch"><button data-ui-lang="da" type="button">DA</button><button data-ui-lang="en" type="button">EN</button></div><span class="app-account-label" id="appAccountStatus">Visitor</span></div></header><nav aria-label="Main navigation" class="app-nav" id="appNavigation"><button data-go-tab="Welcome" data-lang="navWelcome" type="button">Welcome</button><button data-go-tab="LifeCycle" data-lang="navLifeCycle" type="button">Life Cycle</button><button data-go-tab="BalanceSheet" data-lang="navBalanceSheet" type="button">Balance Sheet</button><button data-go-tab="History" data-lang="navHistory" type="button">Portfolio History</button><button data-go-tab="Account" data-lang="navAccount" type="button">My Account</button></nav><main id="appContent"><section class="app-tab" data-tab="Welcome" id="tabWelcome"><section class="hero">
 <div class="heroKicker" data-lang="heroKicker">
     NEPTOONWEALTH · LIFE CYCLE
@@ -4548,18 +4583,41 @@ body{padding:12px 12px 30px}
 <div class="lifeCycleToastText" id="lifeCycleToastText">
 </div>
 </div></section><section class="app-tab" data-tab="BalanceSheet" id="tabBalanceSheet"><section class="panel">
-<div class="panelHead">
-<div>
-<div class="resultKicker" data-lang="lifeCycleKickerInputComponents">
-         YOUR LIFE COMPONENTS
-      </div>
-<div class="sectionTitle" data-lang="householdTitle">
-        Add to your household picture
-      </div>
-<div class="sectionHint" data-lang="householdHint">
-        Select only the wealth and income components relevant to you.
-      </div>
-</div>
+<div class="panelHead balanceComponentsHeader">
+
+  <div>
+    <div class="resultKicker"
+         data-lang="lifeCycleKickerInputComponents">
+      YOUR LIFE COMPONENTS
+    </div>
+
+    <div class="sectionTitle"
+         data-lang="householdTitle">
+      Add to your household picture
+    </div>
+
+    <div class="sectionHint"
+         data-lang="householdHint">
+      Select only the wealth and income components relevant to you.
+    </div>
+  </div>
+
+  <div class="balanceHeaderMeta">
+
+    <span
+      class="lifeBalancePill currency"
+      id="lifeBalanceCurrency">
+      DKK
+    </span>
+
+    <span
+      class="lifeBalancePill basis"
+      id="lifeBalanceBasis">
+      Today's purchasing power
+    </span>
+
+  </div>
+
 </div>
 <div class="componentPicker">
 <button class="componentBtn" data-component="realEstate" data-label="Real estate" data-lang="addRealEstate" type="button">
