@@ -3952,6 +3952,78 @@ body{padding:12px 12px 30px}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+  .accountPhaseGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+  .accountPhaseCard{border:1px solid #dce3ed;padding:20px;background:#fff;min-width:0;display:flex;flex-direction:column;gap:16px}
+  .accountPhaseHeading h3{font:700 22px Georgia,serif;color:#132540;margin:0 0 3px}.accountPhaseHeading small{color:#718096}
+  .accountPhaseField{display:grid;gap:7px}.accountPhaseField label{font:600 12px Arial,sans-serif;color:#243a59}.accountPhaseField select{width:100%;min-height:38px;border:1px solid #d7e0eb;background:#fff;padding:8px}
+  .accountPhaseReadout{border-top:1px solid #e4e9f0;padding-top:14px;font:12px Arial,sans-serif;color:#62738b}.accountRiskLine{display:flex;justify-content:space-between;align-items:center;margin-top:10px}.accountRiskDots{display:flex;gap:5px}.accountRiskDots i{display:block;width:10px;height:10px;border-radius:50%;background:#d1d5db}.accountRiskLine output{font-weight:700;color:#213653}
+  .accountAllocation{border-top:1px solid #e4e9f0;padding-top:14px}.accountAllocation strong{font:600 13px Arial,sans-serif}.accountAllocationBar{height:12px;background:#eef2f6;margin:12px 0 10px;display:flex;overflow:hidden}.accountAllocationEmpty{font:10px Arial,sans-serif;color:#8a95a4;margin:auto}.accountAllocationLegend{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font:11px Arial,sans-serif}.accountAllocationLegend span{display:inline-flex;align-items:center;gap:4px}.accountAllocationLegend i{width:8px;height:8px;display:inline-block;border-radius:50%}.accountEquity{background:#4e79bd}.accountBonds{background:#9ba8b9}.accountAlternatives{background:#c9a76b}
+  .accountHoldingsButton{margin-top:auto;background:#fff;color:#4e79bd;border:1px solid #cad7e7;padding:11px;font-weight:600;cursor:pointer}.accountHoldingsButton:disabled{opacity:.55;cursor:default}.accountHoldingsPanel{border-top:1px solid #e4e9f0;padding-top:12px}
+  @media(max-width:760px){.accountPhaseGrid{grid-template-columns:1fr}}
+
+  .accountAssumptionsGrid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:18px;margin-top:18px}
+  .accountAssumptionCard{border:1px solid #dce3ed;background:#fff;padding:20px;min-width:0}
+  .accountAssumptionKicker{font:700 10px Arial,sans-serif;letter-spacing:.13em;color:#4e79bd;margin-bottom:8px}
+  .accountAssumptionCard h3{font:700 22px Georgia,'Times New Roman',serif;color:#12233d;margin:0 0 8px}
+  .accountAssumptionCard>p{font:14px/1.5 Georgia,'Times New Roman',serif;color:#59697c;margin:0 0 18px}
+  .accountAssumptionCard .assumptionField{margin-bottom:18px}
+  .assetAssumptionTableWrap{overflow-x:auto}
+  .assetAssumptionTable{border-collapse:collapse;width:100%;font:13px Arial,sans-serif;color:#22334d}
+  .assetAssumptionTable th,.assetAssumptionTable td{border-bottom:1px solid #e5eaf1;padding:11px 8px;text-align:left}
+  .assetAssumptionTable thead th{font-size:11px;color:#62738b;font-weight:600;white-space:nowrap;background:#f5f7fa}
+  .assetAssumptionTable tbody th{font-weight:500}
+  .assetAssumptionTable td{text-align:right}
+  .assetAssumptionTable input{box-sizing:border-box;width:88px;max-width:100%;border:1px solid #d8e0eb;background:white;padding:8px 9px;text-align:right;color:#172941;font:13px Arial,sans-serif;border-radius:0}
+  .assetAssumptionNote{font:11px/1.5 Arial,sans-serif;color:#728198;margin-top:12px}
+  .legacyTaxField{border-top:1px solid #e5eaf1;padding-top:16px;margin-top:16px}
+  @media(max-width:850px){.accountAssumptionsGrid{grid-template-columns:1fr}.accountAssumptionCard{padding:16px}}
+  @media(max-width:760px){#lifeStructuralAssumptions .scenarioGrid{grid-template-columns:1fr!important}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
 </style></head><body><div class="neptoon-app" id="neptoonApp"><header class="app-header"><div class="app-brand"><div class="app-kicker">NEPTOON INVEST</div><div class="app-name">Life Cycle</div></div><div class="app-header-actions"><div class="lang-switch"><button data-ui-lang="da" type="button">DA</button><button data-ui-lang="en" type="button">EN</button></div><span class="app-account-label" id="appAccountStatus">Visitor</span></div></header><nav aria-label="Main navigation" class="app-nav" id="appNavigation"><button data-go-tab="Welcome" data-lang="navWelcome" type="button">Welcome</button><button data-go-tab="LifeCycle" data-lang="navLifeCycle" type="button">Life Cycle</button><button data-go-tab="BalanceSheet" data-lang="navBalanceSheet" type="button">Balance Sheet</button><button data-go-tab="History" data-lang="navHistory" type="button">Portfolio History</button><button data-go-tab="Account" data-lang="navAccount" type="button">My Account</button></nav><main id="appContent"><section class="app-tab" data-tab="Welcome" id="tabWelcome"><section class="hero">
 <div class="heroKicker" data-lang="heroKicker">
     NEPTOONWEALTH · LIFE CYCLE
@@ -5539,207 +5611,136 @@ body{padding:12px 12px 30px}
 </section>
 </div>
 </section>
-</div></section><section class="app-tab" data-tab="Account" id="tabAccount"><section class="panel" id="lifeStructuralAssumptions"><div class="sectionTitle">Life Cycle · Structural assumptions</div><div class="sectionHint">Age, planning horizon and savings growth. These assumptions remain active in the Life Cycle calculation.</div><div class="scenarioGrid" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="scenarioField">
-<label data-lang="currentAge">
-        Current age
-      </label>
-<input id="currentAge" max="100" min="18" type="number" value="50"/>
-</div><div class="scenarioField">
-<label data-lang="expectedLifetime">
-        Expected lifetime
-      </label>
-<input id="deathAge" max="120" min="40" type="number" value="90"/>
-</div><div class="scenarioField">
-<label data-lang="savingsGrowthAnnual">
-        Annual savings growth (%)
-      </label>
-<input id="savingsGrowthAnnual" max="6" min="0" type="number" value="3"/>
-</div></div></section><section class="panel">
-<div class="panelHead">
-<div>
-<div class="sectionTitle" data-lang="assumptionsTitle">
-        Editable model assumptions
-      </div>
-<div class="sectionHint" data-lang="assumptionsHint">
-        Advanced assumptions used by the Life Cycle model.
-      </div>
-</div>
-<button class="assumptionToggle" data-lang="showAssumptions" id="assumptionToggle" type="button">
-      Show assumptions
-    </button>
-</div>
-<div class="assumptionBody" hidden="" id="assumptionBody">
-<div class="assumptionColumns">
-<!-- =========================================
-           LEFT — GENERAL ECONOMIC ASSUMPTIONS
-      ========================================= -->
-<div class="assumptionGeneral">
-<div class="assumptionColumnTitle" data-lang="generalAssumptions">
-          General economic assumptions
-        </div>
-<!-- INFLATION -->
-<div class="assumptionField">
-<label data-lang="expectedInflation" for="inflation">
-    Expected inflation
-  </label>
-<select class="percent inflationSelect" id="inflation">
-<option value="0">0.0%</option>
-<option value="0.5">0.5%</option>
-<option value="1.0">1.0%</option>
-<option value="1.5">1.5%</option>
-<option selected="" value="2.0">2.0%</option>
-<option value="2.5">2.5%</option>
-<option value="3.0">3.0%</option>
-<option value="3.5">3.5%</option>
-<option value="4.0">4.0%</option>
-<option value="4.5">4.5%</option>
-<option value="5.0">5.0%</option>
-</select>
-</div>
-<!-- EFFECTIVE TAX RATE -->
-<div class="assumptionField taxField">
-<label data-lang="effectiveTaxRate">
-            Effective tax rate on investment returns
-          </label>
-<div class="taxOptions">
-<label class="taxOption">
-<input name="taxRate" type="radio" value="0"/>
-<span>0%</span>
-</label>
-<label class="taxOption">
-<input name="taxRate" type="radio" value="0.30"/>
-<span>30%</span>
-</label>
-<label class="taxOption">
-<input checked="" name="taxRate" type="radio" value="0.35"/>
-<span>35%</span>
-</label>
-<label class="taxOption">
-<input name="taxRate" type="radio" value="0.40"/>
-<span>40%</span>
-</label>
-<label class="taxOption">
-<input name="taxRate" type="radio" value="0.45"/>
-<span>45%</span>
-</label>
-<label class="taxOption">
-<input name="taxRate" type="radio" value="0.50"/>
-<span>50%</span>
-</label>
-</div>
-</div>
-<!-- ECONOMIC OUTLOOK -->
-<div class="assumptionField economicOutlookField">
-<label data-lang="economicOutlook">
-            Economic outlook
-          </label>
-<div class="economicOutlookOptions" id="economicOutlookOptions">
-<label class="economicOutlookOption">
-<input name="economicOutlook" type="radio" value="negative"/>
-<span data-lang="economicNegative">
-                Negative
-              </span>
-</label>
-<label class="economicOutlookOption">
-<input checked="" name="economicOutlook" type="radio" value="central"/>
-<span data-lang="economicCentral">
-                Central
-              </span>
-</label>
-<label class="economicOutlookOption">
-<input name="economicOutlook" type="radio" value="optimistic"/>
-<span data-lang="economicOptimistic">
-                Optimistic
-              </span>
-</label>
-</div>
-<div class="economicOutlookNote" data-lang="economicOutlookNote">
-            Adjusts expected nominal returns by ±1.5 percentage points.
-          </div>
-</div>
-</div>
-<!-- =========================================
-           RIGHT — NEPTOON RISK MODEL RETURNS
-      ========================================= -->
-<div class="assumptionRiskReturns">
-<div class="assumptionColumnTitle" data-lang="riskModelReturns">
-    NeptoonWealth Models · Expected annual nominal returns 
+
+  <!-- REPLACEMENT FROM END OF PREVIOUS TAB THROUGH OPENING EXISTING SCRIPT.
+     Add the CSS below to your main stylesheet (or keep the style block in this snippet).
+     Portfolio selectors and asset-specific assumption inputs are UI scaffolding pending JS wiring. -->
+</div></section>
+<section class="app-tab" data-tab="Account" id="tabAccount">
+  <section class="panel" id="lifeStructuralAssumptions">
+    <div class="sectionTitle">Life Cycle · Structural assumptions</div>
+    <div class="sectionHint">Age, planning horizon and savings growth. These assumptions remain active in the Life Cycle calculation.</div>
+    <div class="scenarioGrid" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+      <div class="scenarioField"><label for="currentAge" data-lang="currentAge">Current age</label><input id="currentAge" max="100" min="18" type="number" value="50"/></div>
+      <div class="scenarioField"><label for="deathAge" data-lang="expectedLifetime">Expected lifetime</label><input id="deathAge" max="120" min="40" type="number" value="90"/></div>
+      <div class="scenarioField"><label for="savingsGrowthAnnual" data-lang="savingsGrowthAnnual">Annual savings growth (%)</label><input id="savingsGrowthAnnual" max="6" min="0" type="number" value="3"/></div>
+    </div>
+  </section>
+
+  <!-- PHASE PORTFOLIOS: new controls; populate from portfolios_v1.json when wiring JS. -->
+  <section class="app-config-panel" id="accountPortfolioConfiguration">
+    <div class="app-kicker" data-lang="portfolioConfigKicker">INVESTMENT ASSUMPTIONS</div>
+    <h2 data-lang="portfolioConfigTitle">Portfolio Configuration</h2>
+    <p data-lang="portfolioConfigIntro">Choose an issuer and a representative portfolio independently for each phase. Portfolio risk and allocation are descriptive outputs.</p>
+    <div class="accountPhaseGrid">
+      <article class="accountPhaseCard" id="accountBuildPhase">
+        <div class="accountPhaseHeading"><h3>Building Wealth</h3><small>Accumulation phase</small></div>
+        <div class="accountPhaseField"><label for="buildIssuer">Issuer / Bank</label><select id="buildIssuer"><option value="">Select issuer</option></select></div>
+        <div class="accountPhaseField"><label for="buildModelNo">Portfolio model</label><select id="buildModelNo" disabled><option value="">Select portfolio</option></select></div>
+        <div class="accountPhaseReadout"><span>Neptoon risk classification</span><div class="accountRiskLine"><div class="accountRiskDots" id="buildRiskIndicator" aria-label="Risk level pending"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><output id="buildRiskLevel">— / 7</output></div></div>
+        <div class="accountAllocation"><strong>Core Allocation</strong><div class="accountAllocationBar" id="buildAllocationBar" aria-label="Allocation pending"><span class="accountAllocationEmpty">Awaiting portfolio</span></div><div class="accountAllocationLegend"><span><i class="accountEquity"></i>Equity <output id="buildEquityPct">—</output></span><span><i class="accountBonds"></i>Bonds <output id="buildBondsPct">—</output></span><span><i class="accountAlternatives"></i>Alternatives <output id="buildAlternativesPct">—</output></span></div></div>
+        <button class="accountHoldingsButton" id="buildViewHoldings" type="button" aria-controls="buildHoldingsPanel" aria-expanded="false" disabled>View Holdings ▾</button>
+        <div class="accountHoldingsPanel" id="buildHoldingsPanel" hidden><div id="buildHoldingsContent"></div></div>
+      </article>
+      <article class="accountPhaseCard" id="accountUsePhase">
+        <div class="accountPhaseHeading"><h3>Using Wealth</h3><small>Consumption phase</small></div>
+        <div class="accountPhaseField"><label for="useIssuer">Issuer / Bank</label><select id="useIssuer"><option value="">Select issuer</option></select></div>
+        <div class="accountPhaseField"><label for="useModelNo">Portfolio model</label><select id="useModelNo" disabled><option value="">Select portfolio</option></select></div>
+        <div class="accountPhaseReadout"><span>Neptoon risk classification</span><div class="accountRiskLine"><div class="accountRiskDots" id="useRiskIndicator" aria-label="Risk level pending"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><output id="useRiskLevel">— / 7</output></div></div>
+        <div class="accountAllocation"><strong>Core Allocation</strong><div class="accountAllocationBar" id="useAllocationBar" aria-label="Allocation pending"><span class="accountAllocationEmpty">Awaiting portfolio</span></div><div class="accountAllocationLegend"><span><i class="accountEquity"></i>Equity <output id="useEquityPct">—</output></span><span><i class="accountBonds"></i>Bonds <output id="useBondsPct">—</output></span><span><i class="accountAlternatives"></i>Alternatives <output id="useAlternativesPct">—</output></span></div></div>
+        <button class="accountHoldingsButton" id="useViewHoldings" type="button" aria-controls="useHoldingsPanel" aria-expanded="false" disabled>View Holdings ▾</button>
+        <div class="accountHoldingsPanel" id="useHoldingsPanel" hidden><div id="useHoldingsContent"></div></div>
+      </article>
+    </div>
+    <div class="app-note" id="portfolioProviderNotice">Issuer and model options will be loaded from portfolios_v1.json. Risk, allocation and holdings will reflect the selected model.</div>
+  </section>
+<!-- MY ACCOUNT: replace the old editable assumptions panel and five risk-return rows with this section. -->
+<section class="panel" id="accountAssumptionsPanel">
+  <div class="panelHead">
+    <div>
+      <div class="sectionTitle">Model Assumptions</div>
+      <div class="sectionHint">Economic conditions and asset-specific financial and tax assumptions.</div>
+    </div>
+    <button class="assumptionToggle" id="assumptionToggle" type="button" data-lang="showAssumptions">Show assumptions</button>
   </div>
-<!-- RISK 1 -->
-<div class="assumptionRiskRow">
-<div class="assumptionRiskIdentity">
-<span class="assumptionRiskLevel">
-        1 / 5
-      </span>
-<div class="assumptionRiskName" id="riskModelName1">
-        Risk 1
-      </div>
+  <div class="assumptionBody" id="assumptionBody" hidden>
+    <div class="accountAssumptionsGrid">
+      <section class="accountAssumptionCard" aria-labelledby="economicAssumptionsHeading">
+        <div class="accountAssumptionKicker">MACROECONOMIC ENVIRONMENT</div>
+        <h3 id="economicAssumptionsHeading">Economic Assumptions</h3>
+        <p>Common economic inputs applied across the Life Cycle model.</p>
+        <div class="assumptionField">
+          <label for="inflation" data-lang="expectedInflation">Expected inflation</label>
+          <select class="percent inflationSelect" id="inflation">
+            <option value="0">0.0%</option><option value="0.5">0.5%</option>
+            <option value="1.0">1.0%</option><option value="1.5">1.5%</option>
+            <option value="2.0" selected>2.0%</option><option value="2.5">2.5%</option>
+            <option value="3.0">3.0%</option><option value="3.5">3.5%</option>
+            <option value="4.0">4.0%</option><option value="4.5">4.5%</option>
+            <option value="5.0">5.0%</option>
+          </select>
+        </div>
+        <div class="assumptionField economicOutlookField">
+          <label data-lang="economicOutlook">Economic outlook</label>
+          <div class="economicOutlookOptions" id="economicOutlookOptions">
+            <label class="economicOutlookOption"><input type="radio" name="economicOutlook" value="negative"><span data-lang="economicNegative">Negative</span></label>
+            <label class="economicOutlookOption"><input type="radio" name="economicOutlook" value="central" checked><span data-lang="economicCentral">Central</span></label>
+            <label class="economicOutlookOption"><input type="radio" name="economicOutlook" value="optimistic"><span data-lang="economicOptimistic">Optimistic</span></label>
+          </div>
+          <div class="economicOutlookNote" data-lang="economicOutlookNote">Adjusts expected nominal returns by ±1.5 percentage points.</div>
+        </div>
+      </section>
+      <section class="accountAssumptionCard" aria-labelledby="financialTaxHeading">
+        <div class="accountAssumptionKicker">ASSET-LEVEL INPUTS</div>
+        <h3 id="financialTaxHeading">Financial &amp; Tax Assumptions</h3>
+        <p>Illustrative starting values. Each asset type can have its own gross return and capital tax rate.</p>
+        <div class="assetAssumptionTableWrap">
+          <table class="assetAssumptionTable">
+            <thead><tr><th scope="col">Asset category</th><th scope="col">Exp. return gross</th><th scope="col">Capital tax</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Real estate</th><td><input type="number" id="assetReturnRealEstate" min="-100" max="100" step="0.25" value="4.00" aria-label="Real estate expected gross return percent"></td><td><input type="number" id="assetTaxRealEstate" min="0" max="100" step="1" value="0" aria-label="Real estate capital tax percent"></td></tr>
+              <tr><th scope="row">Private enterprise</th><td><input type="number" id="assetReturnEnterprise" min="-100" max="100" step="0.25" value="7.00" aria-label="Private enterprise expected gross return percent"></td><td><input type="number" id="assetTaxEnterprise" min="0" max="100" step="1" value="35" aria-label="Private enterprise capital tax percent"></td></tr>
+              <tr><th scope="row">Private pension</th><td><input type="number" id="assetReturnPrivatePension" min="-100" max="100" step="0.25" value="6.00" aria-label="Private pension expected gross return percent"></td><td><input type="number" id="assetTaxPrivatePension" min="0" max="100" step="1" value="15" aria-label="Private pension capital tax percent"></td></tr>
+              <tr><th scope="row">Public pension</th><td><input type="number" id="assetReturnPublicPension" min="-100" max="100" step="0.25" value="0.00" aria-label="Public pension expected gross return percent"></td><td><input type="number" id="assetTaxPublicPension" min="0" max="100" step="1" value="0" aria-label="Public pension capital tax percent"></td></tr>
+              <tr><th scope="row">Inheritance / future value</th><td><input type="number" id="assetReturnInheritance" min="-100" max="100" step="0.25" value="2.00" aria-label="Inheritance expected gross return percent"></td><td><input type="number" id="assetTaxInheritance" min="0" max="100" step="1" value="0" aria-label="Inheritance capital tax percent"></td></tr>
+              <tr><th scope="row">Other assets</th><td><input type="number" id="assetReturnOther" min="-100" max="100" step="0.25" value="3.00" aria-label="Other assets expected gross return percent"></td><td><input type="number" id="assetTaxOther" min="0" max="100" step="1" value="35" aria-label="Other assets capital tax percent"></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="assetAssumptionNote">Rates shown in %. Illustrative placeholders only; not connected to the financial engine. Selected investment portfolios retain their own JSON-derived return assumptions.</div>
+        <!-- Retain existing global taxRate radios temporarily for JS compatibility; remove or repurpose only when asset-specific taxation is wired. -->
+        <div class="assumptionField taxField legacyTaxField">
+          <label data-lang="effectiveTaxRate">Effective tax rate on investment returns (legacy portfolio setting)</label>
+          <div class="taxOptions">
+            <label class="taxOption"><input name="taxRate" type="radio" value="0"><span>0%</span></label>
+            <label class="taxOption"><input name="taxRate" type="radio" value="0.30"><span>30%</span></label>
+            <label class="taxOption"><input name="taxRate" type="radio" value="0.35" checked><span>35%</span></label>
+            <label class="taxOption"><input name="taxRate" type="radio" value="0.40"><span>40%</span></label>
+            <label class="taxOption"><input name="taxRate" type="radio" value="0.45"><span>45%</span></label>
+            <label class="taxOption"><input name="taxRate" type="radio" value="0.50"><span>50%</span></label>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+ <section class="app-config-panel">
+    <div class="app-kicker" data-lang="accountKicker">MY ACCOUNT</div>
+    <h2 data-lang="accountTitle">Account &amp; Preferences</h2>
+    <p data-lang="accountIntro">Language preferences work now. Sign-in, saved plans and subscriptions will be connected in a later step.</p>
+    <label data-lang="accountLanguageLabel" for="accountLanguage">Language</label>
+    <select id="accountLanguage"><option value="en">English</option><option value="da">Dansk</option></select>
+    <div class="app-note" id="accountBackendNotice">Account registration and cloud persistence are not yet connected.</div>
+  </section>
+</section>
+</main>
+<aside aria-live="polite" class="model-footer" id="modelStatusFooter"><button aria-expanded="true" id="modelFooterToggle" type="button"><span class="footer-title" data-lang="modelFooterTitle">MODEL STATUS</span><span id="modelFooterChevron">▾</span></button><div class="model-footer-body" id="modelFooterBody"><div><small data-lang="modelStatusLabel">Optimization</small><strong id="globalOptimizationStatus">Waiting for calculation</strong></div><div><small data-lang="modelFreedomLabel">Financial freedom age</small><strong id="globalFreedomAge">—</strong></div><div><small data-lang="modelProviderLabel">Portfolio provider</small><strong id="globalProviderLabel">Neptoon Science</strong></div><div><small data-lang="modelUpdatedLabel">Last successful calculation</small><strong id="globalLastUpdated">—</strong></div></div></aside>
+<footer class="app-legal"><span>© Neptoon Invest · Life Cycle</span><span data-lang="appDisclaimer">Illustrative financial modelling. Results are not investment advice.</span></footer>
 </div>
-<output class="assumptionRiskValue" id="riskReturn1">
-      —
-    </output>
-</div>
-<!-- RISK 2 -->
-<div class="assumptionRiskRow">
-<div class="assumptionRiskIdentity">
-<span class="assumptionRiskLevel">
-        2 / 5
-      </span>
-<div class="assumptionRiskName" id="riskModelName2">
-        Risk 2
-      </div>
-</div>
-<output class="assumptionRiskValue" id="riskReturn2">
-      —
-    </output>
-</div>
-<!-- RISK 3 -->
-<div class="assumptionRiskRow">
-<div class="assumptionRiskIdentity">
-<span class="assumptionRiskLevel">
-        3 / 5
-      </span>
-<div class="assumptionRiskName" id="riskModelName3">
-        Risk 3
-      </div>
-</div>
-<output class="assumptionRiskValue" id="riskReturn3">
-      —
-    </output>
-</div>
-<!-- RISK 4 -->
-<div class="assumptionRiskRow">
-<div class="assumptionRiskIdentity">
-<span class="assumptionRiskLevel">
-        4 / 5
-      </span>
-<div class="assumptionRiskName" id="riskModelName4">
-        Risk 4
-      </div>
-</div>
-<output class="assumptionRiskValue" id="riskReturn4">
-      —
-    </output>
-</div>
-<!-- RISK 5 -->
-<div class="assumptionRiskRow">
-<div class="assumptionRiskIdentity">
-<span class="assumptionRiskLevel">
-        5 / 5
-      </span>
-<div class="assumptionRiskName" id="riskModelName5">
-        Risk 5
-      </div>
-</div>
-<output class="assumptionRiskValue" id="riskReturn5">
-      —
-    </output>
-</div>
-</div>
-</div>
-</div>
-</section><section class="app-config-panel"><div class="app-kicker" data-lang="portfolioConfigKicker">INVESTMENT ASSUMPTIONS</div><h2 data-lang="portfolioConfigTitle">Portfolio Configuration</h2><p data-lang="portfolioConfigIntro">Choose a provider for your five representative risk portfolios. Neptoon Science remains the default.</p><label data-lang="portfolioProviderLabel" for="portfolioProvider">Investment provider</label><select id="portfolioProvider"><option value="neptoon">Neptoon Science</option></select><div class="app-note" id="portfolioProviderNotice">Other providers will appear when suitable models are mapped from portfolios_v1.json.</div><div class="anchor-config" id="portfolioAnchorConfiguration"><div>1 <span id="configAnchor1">Bohr</span></div><div>2 <span id="configAnchor2">Ørsted</span></div><div>3 <span id="configAnchor3">Tycho</span></div><div>4 <span id="configAnchor4">Turing</span></div><div>5 <span id="configAnchor5">Oppenheimer</span></div></div></section><section class="app-config-panel"><div class="app-kicker" data-lang="accountKicker">MY ACCOUNT</div><h2 data-lang="accountTitle">Account &amp; Preferences</h2><p data-lang="accountIntro">Language preferences work now. Sign-in, saved plans and subscriptions will be connected in a later step.</p><label data-lang="accountLanguageLabel" for="accountLanguage">Language</label><select id="accountLanguage"><option value="en">English</option><option value="da">Dansk</option></select><div class="app-note" id="accountBackendNotice">Account registration and cloud persistence are not yet connected.</div></section></section></main><aside aria-live="polite" class="model-footer" id="modelStatusFooter"><button aria-expanded="true" id="modelFooterToggle" type="button"><span class="footer-title" data-lang="modelFooterTitle">MODEL STATUS</span><span id="modelFooterChevron">▾</span></button><div class="model-footer-body" id="modelFooterBody"><div><small data-lang="modelStatusLabel">Optimization</small><strong id="globalOptimizationStatus">Waiting for calculation</strong></div><div><small data-lang="modelFreedomLabel">Financial freedom age</small><strong id="globalFreedomAge">—</strong></div><div><small data-lang="modelProviderLabel">Portfolio provider</small><strong id="globalProviderLabel">Neptoon Science</strong></div><div><small data-lang="modelUpdatedLabel">Last successful calculation</small><strong id="globalLastUpdated">—</strong></div></div></aside><footer class="app-legal"><span>© Neptoon Invest · Life Cycle</span><span data-lang="appDisclaimer">Illustrative financial modelling. Results are not investment advice.</span></footer></div><script>
-/* Application shell only. Keep your existing financial engine JS loaded separately. */
+  
+  
+  
+  /* Application shell only. Keep your existing financial engine JS loaded separately. */
 (function(){
  const tabs=[...document.querySelectorAll('.app-tab')];
  const nav=[...document.querySelectorAll('[data-go-tab]')];
