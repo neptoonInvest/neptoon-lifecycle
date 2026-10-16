@@ -3875,6 +3875,22 @@ body{padding:12px 12px 30px}
 #tabLifeCycle .lifeCoreField input:focus{box-shadow:0 0 0 1px #4E79BD}
 @media(max-width:850px){#tabLifeCycle #scenarioInputsPanel .scenarioGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){#tabLifeCycle #scenarioInputsPanel .scenarioGrid{grid-template-columns:1fr}}
+
+/* BALANCE SHEET TAB · PERMANENT WORKSPACE */
+#lifeBalancePanel #lifeBalanceBody{display:block !important;}
+#btnLifeBalanceToggle{display:none !important;}
+#lifeBalancePanel .panelHead{align-items:center;}
+.balanceAgeControl{display:flex;flex-direction:column;gap:5px;min-width:190px;}
+.balanceAgeControl label{font:700 10px Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#4E79BD;}
+.balanceAgeControl select{height:36px;min-width:190px;padding:6px 10px;border:1px solid #cfd6df;border-radius:0;background:#fff;color:#0f1b2c;font:12px Arial,sans-serif;}
+#lifeBalancePanel .lifeBalanceStateGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+#lifeBalancePanel .lifeBalanceStateBtn{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:5px;min-height:100px;padding:13px 14px;border:1px solid #d8dee8;border-radius:0;background:#fff;cursor:pointer;}
+#lifeBalancePanel .lifeBalanceStateBtn.is-active{border-color:#4E79BD;background:#eef4fb;box-shadow:inset 0 0 0 1px #4E79BD;}
+#lifeBalancePanel .lifeBalanceStateIcon{display:flex;align-items:center;justify-content:center;width:27px;height:27px;border:1px solid #dce6f3;background:#f5f8fd;color:#4E79BD;font:19px 'Times New Roman',serif;}
+#lifeBalancePanel .lifeBalanceStateTitle{font:600 14px 'Times New Roman',serif;color:#172b4d;}
+#lifeBalancePanel .lifeBalanceStateSub{font:11px/1.35 Arial,sans-serif;color:#667085;}
+@media(max-width:780px){#lifeBalancePanel .lifeBalanceStateGrid{grid-template-columns:repeat(2,minmax(0,1fr));}#lifeBalancePanel .panelHead{flex-wrap:wrap;}}
+@media(max-width:450px){#lifeBalancePanel .lifeBalanceStateGrid{grid-template-columns:1fr;}}
 </style></head><body><div class="neptoon-app" id="neptoonApp"><header class="app-header"><div class="app-brand"><div class="app-kicker">NEPTOON INVEST</div><div class="app-name">Life Cycle</div></div><div class="app-header-actions"><div class="lang-switch"><button data-ui-lang="da" type="button">DA</button><button data-ui-lang="en" type="button">EN</button></div><span class="app-account-label" id="appAccountStatus">Visitor</span></div></header><nav aria-label="Main navigation" class="app-nav" id="appNavigation"><button data-go-tab="Welcome" data-lang="navWelcome" type="button">Welcome</button><button data-go-tab="LifeCycle" data-lang="navLifeCycle" type="button">Life Cycle</button><button data-go-tab="BalanceSheet" data-lang="navBalanceSheet" type="button">Balance Sheet</button><button data-go-tab="History" data-lang="navHistory" type="button">Portfolio History</button><button data-go-tab="Account" data-lang="navAccount" type="button">My Account</button></nav><main id="appContent"><section class="app-tab" data-tab="Welcome" id="tabWelcome"><section class="hero">
 <div class="heroKicker" data-lang="heroKicker">
     NEPTOONWEALTH · LIFE CYCLE
@@ -4185,14 +4201,7 @@ body{padding:12px 12px 30px}
     -->
 </div>
 </section></section><section class="app-tab" data-tab="LifeCycle" id="tabLifeCycle"><div class="mode-header"><div><div class="app-kicker" data-lang="lifeCyclePerspective">YOUR LIFE CYCLE PERSPECTIVE</div><h2 id="modeTitle">Financial Freedom</h2><p id="modeDescription">Explore when your desired lifestyle becomes sustainable.</p></div><div aria-label="Life Cycle perspective" class="mode-switch" role="group"><button aria-pressed="true" data-mode="fire" type="button">FIRE</button><button aria-pressed="false" data-mode="legacy" type="button">LEGACY</button></div></div><section class="panel" id="scenarioInputsPanel"><div class="panelHead"><div><div class="resultKicker">FOUR LIFESTYLE DECISIONS</div><div class="sectionTitle">Your financial choices</div></div></div>
-
 <div class="scenarioGrid">
-
-
-
-
-
-
 <div class="scenarioField lifeCoreField">
 <label data-lang="wealthToday">
     Wealth today
@@ -5146,20 +5155,15 @@ body{padding:12px 12px 30px}
 </section><section class="panel" id="lifeBalancePanel">
 <div class="panelHead">
 <div>
-<div class="sectionTitle" data-lang="freedomDayTitle">
-        Your Financial Freedom Day
-      </div>
-<div class="sectionHint" data-lang="freedomDayHint">
-        Discover what your wealth makes possible
-        when working becomes a financial choice.
-      </div>
+<div class="sectionTitle" data-lang="freedomDayTitle">Your Household Balance Sheet</div>
+<div class="sectionHint" data-lang="freedomDayHint">Explore your assets, liabilities and economic equity across your lifetime.</div>
 </div>
-<button aria-controls="lifeBalanceBody" aria-expanded="false" class="assumptionToggle" id="btnLifeBalanceToggle" type="button">
+<button aria-controls="lifeBalanceBody" aria-expanded="true" class="assumptionToggle" hidden="" id="btnLifeBalanceToggle" type="button">
       Explore your freedom
     </button>
-</div>
+<div class="balanceAgeControl"><label data-label-da="Valgt alder" data-label-en="Selected age" for="lifeBalanceAgeSelect">Selected age</label><select aria-label="Selected age" id="lifeBalanceAgeSelect"><option value="today">Today · t = 0</option></select></div></div>
 <!-- EXPANDABLE BODY -->
-<div class="lifeBalanceBody" hidden="" id="lifeBalanceBody">
+<div class="lifeBalanceBody" id="lifeBalanceBody">
 <!-- FREEDOM DAY META -->
 <div class="lifeBalanceMeta">
 <span class="lifeBalanceFreedom" id="lifeBalanceDate">
@@ -5177,7 +5181,7 @@ body{padding:12px 12px 30px}
 ========================================= -->
 <div class="freedomDayIntro">
 <div class="lifeBalanceStateGrid" id="lifeBalanceStateGrid">
-<button class="lifeBalanceStateBtn" data-balance-state="today" type="button">
+<button aria-pressed="true" class="lifeBalanceStateBtn is-active" data-balance-state="today" type="button"><span aria-hidden="true" class="lifeBalanceStateIcon">◷</span>
 <span class="lifeBalanceStateTitle" data-label-da="I dag" data-label-en="Today">
         I dag
       </span>
@@ -5185,7 +5189,7 @@ body{padding:12px 12px 30px}
         Din økonomiske startposition
       </span>
 </button>
-<button aria-pressed="true" class="lifeBalanceStateBtn is-active" data-balance-state="freedom" type="button">
+<button aria-pressed="false" class="lifeBalanceStateBtn" data-balance-state="freedom" type="button"><span aria-hidden="true" class="lifeBalanceStateIcon">✦</span>
 <span class="lifeBalanceStateTitle" data-label-da="Økonomisk frihed" data-label-en="Financial Freedom">
         Økonomisk frihed
       </span>
@@ -5193,7 +5197,7 @@ body{padding:12px 12px 30px}
         Når arbejde bliver et valg
       </span>
 </button>
-<button class="lifeBalanceStateBtn" data-balance-state="beforeDeath" type="button">
+<button aria-pressed="false" class="lifeBalanceStateBtn" data-balance-state="beforeDeath" type="button"><span aria-hidden="true" class="lifeBalanceStateIcon">◴</span>
 <span class="lifeBalanceStateTitle" data-label-da="Før slutalder" data-label-en="Before Terminal Age">
         Før slutalder
       </span>
@@ -5201,7 +5205,7 @@ body{padding:12px 12px 30px}
         Din sidste økonomiske balance
       </span>
 </button>
-<button class="lifeBalanceStateBtn" data-balance-state="finalEstate" type="button">
+<button aria-pressed="false" class="lifeBalanceStateBtn" data-balance-state="finalEstate" type="button"><span aria-hidden="true" class="lifeBalanceStateIcon">◇</span>
 <span class="lifeBalanceStateTitle" data-label-da="Efterladt formue" data-label-en="Final Estate">
         Efterladt formue
       </span>
