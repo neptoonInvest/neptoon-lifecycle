@@ -4000,7 +4000,34 @@ body{padding:12px 12px 30px}
 
 
 
-
+.accountMembershipPanel{max-width:1240px}
+.accountMembershipGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+.accountMemberCard{display:flex;flex-direction:column;gap:12px;min-width:0;padding:19px;border:1px solid #dce3ed;background:#f8fafd}
+.accountMemberHead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.accountMemberHead h3{font-family:Georgia,'Times New Roman',serif;font-size:19px;color:#10233e;margin:0}
+.accountMemberPill{font:600 11px Arial,sans-serif;color:#3d6397;background:#e8eff9;border:1px solid #d4e0f1;padding:5px 9px;white-space:nowrap}
+.accountMemberCard p{font:14px/1.55 Georgia,'Times New Roman',serif;color:#3d536d;margin:0;min-height:65px}
+.accountMemberMeta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1px solid #e1e6ef;padding-top:12px;font:12px Arial,sans-serif;color:#61728a}
+.accountMemberMeta strong{color:#1d3556;font-weight:600;text-align:right;overflow-wrap:anywhere}
+.accountMemberButton{width:100%;min-height:38px;padding:9px 12px;background:#fff;color:#315e9e;border:1px solid #aebed5;border-radius:0;font:600 12px Arial,sans-serif;cursor:pointer}
+.accountMemberButton:hover:not(:disabled){background:#edf3fc}
+.accountMemberButtonPrimary{background:#4e79bd;color:#fff;border-color:#4e79bd}
+.accountMemberButtonPrimary:hover:not(:disabled){background:#3d66a8}
+.accountMemberButton:disabled{cursor:not-allowed;opacity:.55}
+.accountMemberCard small{font:11px/1.45 Arial,sans-serif;color:#6a7b92}
+.accountLanguageSection{border-top:1px solid #e1e6ef;padding-top:17px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.accountLanguageSection label{font:600 12px Arial,sans-serif;color:#10233e}
+.accountLanguageSection select{width:230px;max-width:100%;height:39px;border:1px solid #d5ddeb;background:#fff;padding:0 12px}
+.accountLanguageSection .app-note{margin-top:2px}
+.accountPremiumOverlay:not([hidden]){position:fixed;inset:0;z-index:10000;display:flex;justify-content:center;align-items:center;padding:20px;background:rgba(12,27,49,.62)}
+.accountPremiumDialog{position:relative;width:min(100%,520px);max-height:calc(100vh - 40px);overflow:auto;padding:32px;background:#fff;border:1px solid #cfd9e6;box-shadow:0 20px 70px rgba(0,0,0,.2)}
+.accountPremiumDialog h2{font:700 27px Georgia,'Times New Roman',serif;color:#10233e;margin:10px 0 12px}
+.accountPremiumDialog p{font:15px/1.6 Georgia,'Times New Roman',serif;color:#425a75}
+.accountPremiumClose{position:absolute;right:14px;top:12px;background:transparent;border:0;font-size:26px;color:#536780;cursor:pointer}
+.accountPremiumFeatures{display:grid;gap:12px;padding:18px;margin:22px 0;border:1px solid #e1e6ef;background:#f8fafd;font:13px Arial,sans-serif;color:#263c57}
+.accountPremiumFeatures span{color:#4e79bd;font-weight:700;margin-right:10px}
+.accountPremiumDialog .accountPremiumFineprint{font:11px/1.5 Arial,sans-serif;color:#6a7b92;text-align:center;margin-bottom:0}
+@media(max-width:850px){.accountMembershipGrid{grid-template-columns:1fr}.accountMemberCard p{min-height:0}}
 
 
 
@@ -5724,16 +5751,78 @@ body{padding:12px 12px 30px}
     </div>
   </div>
 </section>
- <section class="app-config-panel">
-    <div class="app-kicker" data-lang="accountKicker">MY ACCOUNT</div>
-    <h2 data-lang="accountTitle">Account &amp; Preferences</h2>
-    <p data-lang="accountIntro">Language preferences work now. Sign-in, saved plans and subscriptions will be connected in a later step.</p>
+
+  
+<!-- REPLACE ONLY THE EXISTING ACCOUNT & PREFERENCES SECTION WITH THIS BLOCK.
+     Keep the closing </section> for #tabAccount, </main>, footer, and all scripts unchanged. -->
+<section class="app-config-panel accountMembershipPanel" id="accountPreferencesPanel">
+  <div class="app-kicker" data-lang="accountKicker">MY ACCOUNT</div>
+  <h2 data-lang="accountTitle">Account &amp; Preferences</h2>
+  <p data-lang="accountIntro">Manage your membership, financial plan and language preferences.</p>
+
+  <div class="accountMembershipGrid">
+    <section class="accountMemberCard" aria-labelledby="accountIdentityHeading">
+      <div class="accountMemberHead"><h3 id="accountIdentityHeading">Account</h3><span class="accountMemberPill" id="accountIdentityStatus">Visitor</span></div>
+      <p>Register or sign in to keep your financial plan across devices.</p>
+      <div class="accountMemberMeta"><span>Email</span><strong id="accountEmailDisplay">Not signed in</strong></div>
+      <button class="accountMemberButton accountMemberButtonPrimary" id="accountSignInButton" type="button" disabled>Sign in / Register</button>
+      <small>Secure account registration will be enabled in a later step.</small>
+    </section>
+
+    <section class="accountMemberCard" aria-labelledby="accountPlanHeading">
+      <div class="accountMemberHead"><h3 id="accountPlanHeading">Your Financial Plan</h3><span class="accountMemberPill" id="accountSaveStatus">Local only</span></div>
+      <p>Keep your Life Cycle inputs, Balance Sheet and selected portfolios together.</p>
+      <div class="accountMemberMeta"><span>Last cloud save</span><strong id="accountLastSaved">—</strong></div>
+      <button class="accountMemberButton" id="accountSavePlanButton" type="button" disabled>Save Financial Plan</button>
+      <small>Cloud saving becomes available after registration is connected.</small>
+    </section>
+
+    <section class="accountMemberCard" aria-labelledby="accountMembershipHeading">
+      <div class="accountMemberHead"><h3 id="accountMembershipHeading">Membership</h3><span class="accountMemberPill" id="accountMembershipStatus">Free</span></div>
+      <p>Premium unlocks the full range of household assets, pensions and liabilities.</p>
+      <div class="accountMemberMeta"><span>Current access</span><strong id="accountEntitlementLabel">Free simulation</strong></div>
+      <button class="accountMemberButton" id="accountExplorePremium" type="button" aria-haspopup="dialog" aria-controls="accountPremiumOverlay">Explore Premium</button>
+      <small>No payment will be collected in this preview.</small>
+    </section>
+  </div>
+
+  <div class="accountLanguageSection">
     <label data-lang="accountLanguageLabel" for="accountLanguage">Language</label>
     <select id="accountLanguage"><option value="en">English</option><option value="da">Dansk</option></select>
-    <div class="app-note" id="accountBackendNotice">Account registration and cloud persistence are not yet connected.</div>
-  </section>
+    <div class="app-note" id="accountBackendNotice">Account registration, cloud persistence and billing are not yet connected.</div>
+  </div>
 </section>
+  
+</section>
+
+
+
+  
 </main>
+
+<!-- PLACE THIS OVERLAY AFTER </main> AND BEFORE THE MODEL STATUS FOOTER.
+     It is hidden by default. JS can open it later via #accountExplorePremium. -->
+<div class="accountPremiumOverlay" id="accountPremiumOverlay" role="presentation" hidden>
+  <div class="accountPremiumDialog" role="dialog" aria-modal="true" aria-labelledby="accountPremiumTitle" aria-describedby="accountPremiumDescription">
+    <button class="accountPremiumClose" id="accountPremiumClose" type="button" aria-label="Close Premium information">×</button>
+    <div class="app-kicker">NEPTOON LIFE CYCLE</div>
+    <h2 id="accountPremiumTitle">Unlock Your Complete Balance Sheet</h2>
+    <p id="accountPremiumDescription">Model the financial components that shape your household's future — from real estate and pensions to enterprises, future claims and liabilities.</p>
+    <div class="accountPremiumFeatures">
+      <div><span>✓</span> Full Balance Sheet components</div>
+      <div><span>✓</span> Advanced household Life Cycle modelling</div>
+      <div><span>✓</span> Cloud-saved financial plans</div>
+    </div>
+    <button class="accountMemberButton accountMemberButtonPrimary" id="accountPremiumCheckout" type="button" disabled>Continue to Secure Checkout</button>
+    <p class="accountPremiumFineprint">Payments are not enabled yet. Pricing and subscription terms will be displayed before checkout is activated.</p>
+  </div>
+</div>
+
+
+
+
+
+  
 <aside aria-live="polite" class="model-footer" id="modelStatusFooter"><button aria-expanded="true" id="modelFooterToggle" type="button"><span class="footer-title" data-lang="modelFooterTitle">MODEL STATUS</span><span id="modelFooterChevron">▾</span></button><div class="model-footer-body" id="modelFooterBody"><div><small data-lang="modelStatusLabel">Optimization</small><strong id="globalOptimizationStatus">Waiting for calculation</strong></div><div><small data-lang="modelFreedomLabel">Financial freedom age</small><strong id="globalFreedomAge">—</strong></div><div><small data-lang="modelProviderLabel">Portfolio provider</small><strong id="globalProviderLabel">Neptoon Science</strong></div><div><small data-lang="modelUpdatedLabel">Last successful calculation</small><strong id="globalLastUpdated">—</strong></div></div></aside>
 <footer class="app-legal"><span>© Neptoon Invest · Life Cycle</span><span data-lang="appDisclaimer">Illustrative financial modelling. Results are not investment advice.</span></footer>
 </div>
@@ -5827,4 +5916,19 @@ body{padding:12px 12px 30px}
  observer.observe(root,{attributes:true,attributeFilter:['data-perspective']});
  syncPerspective();
 })();
+
+(function(){
+  const trigger=document.getElementById('accountExplorePremium');
+  const overlay=document.getElementById('accountPremiumOverlay');
+  const close=document.getElementById('accountPremiumClose');
+  if(!trigger||!overlay||!close)return;
+  function hide(){overlay.hidden=true;trigger.focus();}
+  trigger.addEventListener('click',()=>{overlay.hidden=false;close.focus();});
+  close.addEventListener('click',hide);
+  overlay.addEventListener('click',event=>{if(event.target===overlay)hide();});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!overlay.hidden)hide();});
+})();
+
+
+  
 </script></body></html>
